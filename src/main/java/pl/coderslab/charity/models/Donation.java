@@ -12,10 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "donations")
-public class Donation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Donation extends AbstractEntity{
 
     @Column(nullable = false)
     private Integer quantity;
@@ -61,15 +58,6 @@ public class Donation {
     @PreUpdate
     public void preUpdate() {
         updated = LocalDateTime.now();
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Integer getQuantity() {
@@ -166,37 +154,5 @@ public class Donation {
 
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Donation donation = (Donation) o;
-        return Objects.equals(id, donation.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Donation{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                ", categories=" + categories +
-                ", institution=" + institution +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", phone='" + phone + '\'' +
-                ", pickUpDate=" + pickUpDate +
-                ", pickUpTime=" + pickUpTime +
-                ", pickUpComment='" + pickUpComment + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                '}';
     }
 }
