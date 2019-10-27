@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url value="/" var="mainURL"/>
 <jsp:include page="header.jsp"/>
 
@@ -60,7 +61,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="${mainURL}users/register" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section id="about-us" class="about-us">
@@ -95,5 +96,30 @@
     </div>
 
 </section>
+<footer>
+    <div id="contact" class="contact">
+        <h2>Skontaktuj się z nami</h2>
+        <h3>Formularz kontaktowy</h3>
+
+        <form:form modelAttribute="messageDTO" method="post" cssClass="form--contact">
+            <form:hidden path="email"/>
+            <div class="form-group form-group--50">
+                <form:input path="firstName" placeholder="Imię"/>
+                <form:errors path="firstName" cssClass="error_small" element="div" />
+            </div>
+            <div class="form-group form-group--50">
+                <form:input path="lastName" placeholder="Nazwisko"/>
+                <form:errors path="lastName" cssClass="error_small" element="div" />
+            </div>
+
+            <div class="form-group">
+                <form:textarea path="message" placeholder="Wiadomość" rows="1"/>
+                <form:errors path="message" cssClass="error_small" element="div" />
+            </div>
+
+            <button class="btn" type="submit">Wyślij</button>
+        </form:form>
+        <br><br><br><br><br><br>
+    </div>
 <jsp:include page="footer.jsp"/>
 

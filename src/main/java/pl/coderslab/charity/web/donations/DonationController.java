@@ -1,5 +1,6 @@
 package pl.coderslab.charity.web.donations;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,27 +10,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.models.Category;
 import pl.coderslab.charity.models.Institution;
+import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.CategoryService;
 import pl.coderslab.charity.services.DonationService;
 import pl.coderslab.charity.services.InstitutionService;
+import pl.coderslab.charity.services.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
 @RequestMapping("/donations")
-public class DonationControler {
+public class DonationController {
 
     private DonationService donationService;
     private CategoryService categoryService;
     private InstitutionService institutionService;
+    private UserService userService;
 
-    public DonationControler(DonationService donationService, CategoryService categoryService, InstitutionService institutionService) {
+    public DonationController(DonationService donationService, CategoryService categoryService, InstitutionService institutionService, UserService userService) {
         this.donationService = donationService;
         this.categoryService = categoryService;
         this.institutionService = institutionService;
+        this.userService = userService;
+    }
+
+    @ModelAttribute("loggedUser")
+    public User loggedUser(){
+        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        return userService.getUserByEmail(principal.getName());
     }
 
     @ModelAttribute("categories")
@@ -47,12 +59,14 @@ public class DonationControler {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         model.addAttribute("actualDate", LocalDate.now().format(inputFormatter));
         model.addAttribute("donation", new DonationDTO());
+        model.addAttribute("headerClass", "form");
         return "donation";
     }
 
     @PostMapping
-    public String proccessDonationMainPage(@ModelAttribute("donation") @Valid DonationDTO donation, BindingResult result) {
+    public String proccessDonationMainPage(@ModelAttribute("donation") @Valid DonationDTO donation, BindingResult result,Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("headerClass", "form");
             return "donation";
         }
 

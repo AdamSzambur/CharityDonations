@@ -1,6 +1,8 @@
-package pl.coderslab.charity.web.users.register;
+package pl.coderslab.charity.web.users.edit;
 
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,12 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/users/register")
-public class RegisterController {
+@RequestMapping("/users/edit")
+public class UserEditController {
 
     private UserService userService;
 
-    public RegisterController(UserService userService) {
+    public UserEditController(UserService userService) {
         this.userService = userService;
     }
 
@@ -32,26 +34,24 @@ public class RegisterController {
         return userService.getUserByEmail(principal.getName());
     }
 
+
     @GetMapping
-    public String registerUserPage(Model model) {
-        model.addAttribute("userFormDTO", new UserFormDTO("ROLE_USER",true));
-        return "register";
+    public String editUserPage(Model model, Principal principal) {
+        model.addAttribute("userFormDTO", new UserFormDTO(userService.getUserByEmail(principal.getName())));
+        model.addAttribute("headerClass", "form");
+        return "editUser";
     }
 
     @PostMapping
-    public String registerUserPage(@ModelAttribute("userFormDTO") @Valid UserFormDTO userFormDTO, BindingResult result) {
+    public String editUserPage(@ModelAttribute("userFormDTO") @Valid UserFormDTO userFormDTO, BindingResult result, Model model) {
+        model.addAttribute("headerClass", "form");
         if (result.hasErrors()) {
-            return "register";
+            return "editUser";
         }
 
         if (!userFormDTO.getPassword().equals(userFormDTO.getRePassword())) {
             result.rejectValue("rePassword", null,"Hasła muszą być zgodne");
-            return "register";
-        }
-
-        if (!userService.isEmailAvailable(userFormDTO.getEmail())) {
-            result.rejectValue("email", null, "Email jest zajęty");
-            return "register";
+            return "editUser";
         }
 
         userService.addUpdateUser(userFormDTO);

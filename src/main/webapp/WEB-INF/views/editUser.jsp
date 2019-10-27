@@ -10,7 +10,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Rejestracja nowego użytkownika
+                Dane użytkownika
 
                 <form:form method="post" modelAttribute="userFormDTO">
                 <form:hidden path="available"/>
@@ -20,19 +20,19 @@
                             <table>
                                 <tr>
                                     <td align="right">Imię :</td>
-                                    <td><form:input path="firstName" cssClass="form-control" id="firstName"/><br>
+                                    <td><form:input path="firstName" cssClass="form-control" id="firstName" value="${userFormDTO.firstName}"/><br>
                                         <form:errors path="firstName" cssClass="error_small" element="div" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right">Nazwisko :</td>
-                                    <td><form:input path="lastName" cssClass="form-control" id="lastName"/><br>
+                                    <td><form:input path="lastName" cssClass="form-control" id="lastName" value="${userFormDTO.lastName}"/><br>
                                         <form:errors path="lastName" cssClass="error_small" element="div" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right">email :</td>
-                                    <td><form:input path="email" cssClass="form-control" id="email"/><br>
+                                    <td><form:input path="email" cssClass="form-control" id="email" readonly="true" value="${userFormDTO.email}"/><br>
                                         <form:errors path="email" cssClass="error_small" element="div" />
                                     </td>
                                 </tr>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group form-group--inline">
                     <div class="form-group form-group--inline">
-                        <button type="submit" class="btn btn-primary">Zarejestruj użytkownika</button>
+                        <button type="submit" class="btn btn-primary">Zmień dane użytkownika</button>
                     </div>
                 </form:form>
             </h1>
@@ -61,5 +61,6 @@
     </div>
 </header>
 <footer>
+
 <jsp:include page="footer.jsp"/>
 

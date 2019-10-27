@@ -5,4 +5,6 @@ import pl.coderslab.charity.models.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     long countByEmail(String email);
+
+    User findByEmail(String email);
 }

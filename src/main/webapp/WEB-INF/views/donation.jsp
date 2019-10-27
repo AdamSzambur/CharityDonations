@@ -57,29 +57,6 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-
-<%--        <form:form modelAttribute="donation">--%>
-<%--        <div data-step="1" class="active">--%>
-<%--            <h3>Zaznacz co chcesz oddać:</h3>--%>
-
-<%--            <c:forEach items="${categories}" var="category">--%>
-<%--                <div class="form-group form-group--checkbox">--%>
-<%--                    <label>--%>
-<%--                        <form:checkbox path="categories" value="${category.name}"/>--%>
-<%--&lt;%&ndash;                        <input type="checkbox" value="${category.name}" class="category">&ndash;%&gt;--%>
-<%--                        <span class="checkbox"></span>--%>
-<%--                        <span class="description">${category.name}</span>--%>
-<%--                    </label>--%>
-<%--                </div>--%>
-<%--            </c:forEach>--%>
-<%--            <span class="error"></span>--%>
-<%--            <div class="form-group form-group--buttons">--%>
-<%--                <button type="button" class="btn next-step">Dalej</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        </form:form>--%>
-
-
         <form:form modelAttribute="donation" method="post" enctype="multipart/form-data">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
@@ -89,7 +66,6 @@
                 <div class="form-group form-group--checkbox">
                     <label>
                         <form:checkbox path="categories" value="${category.id}" cssClass="category" data-name="${category.name}"/>
-<%--                        <input type="checkbox" value="${category.name}" class="category">--%>
                         <span class="checkbox"></span>
                         <span class="description">${category.name}</span>
                     </label>
@@ -109,7 +85,6 @@
                     <label>
                         Liczba 60l worków:
                         <form:input path="quantity" cssClass="quantity" type="number" step="1" min="1"/>
-<%--                        <input type="number" name="quantity" step="1" min="1" class="quantity"/>--%>
                     </label>
                 </div>
                 <span class="error"></span>
@@ -129,7 +104,6 @@
                 <div class="form-group form-group--checkbox">
                     <label>
                         <form:radiobutton path="institution" value="${institution.id}" cssClass="institution" data-name="${institution.name}"/>
-<%--                        <input type="radio" name="institution" value="${institution.name}" class="institution"/>--%>
                         <span class="checkbox radio"></span>
                         <span class="description">
                   <div class="title">${institution.name}</div>
@@ -157,7 +131,6 @@
                         <div class="form-group form-group--inline">
                             <label> Ulica
                                 <form:input path="street" cssClass="street"/>
-<%--                                <input type="text" name="address" class="street"/>--%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -166,7 +139,6 @@
 
                             <label> Miasto
                                 <form:input path="city" cssClass="city"/>
-<%--                                <input type="text" name="city" class="city"/> --%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -174,7 +146,6 @@
                         <div class="form-group form-group--inline">
                             <label>Kod pocztowy
                                 <form:input path="zipCode" cssClass="zipCode"/>
-<%--                                <input type="text" name="postcode" class="zipCode"/>--%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -182,7 +153,6 @@
                         <div class="form-group form-group--inline">
                             <label>Numer telefonu
                                 <form:input path="phone" cssClass="phone"/>
-<%--                                <input type="phone" name="phone" class="phone"/>--%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -194,7 +164,6 @@
 
                             <label> Data
                                 <form:input path="pickUpDate" cssClass="date" type="date" value="${actualDate}"/>
-<%--                                <input type="date" name="data" class="date"/> --%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -203,7 +172,6 @@
                         <div class="form-group form-group--inline">
                             <label> Godzina
                                 <form:input path="pickUpTime" cssClass="time" type="time"/>
-<%--                                <input type="time" name="time" class="time"/> --%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -212,7 +180,6 @@
                         <div class="form-group form-group--inline">
                             <label>Uwagi dla kuriera
                                 <form:textarea path="pickUpComment" cssClass="comment" rows="5"/>
-<%--                                <textarea name="more_info" rows="5" class="comment"></textarea>--%>
                             </label><br>
                             <span class="error"></span>
                         </div>
@@ -275,5 +242,5 @@
         </form:form>
     </div>
 </section>
-
+<footer>
 <jsp:include page="footer.jsp"/>

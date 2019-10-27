@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:url value="/" var="mainURL"/>
 <!DOCTYPE html>
 <html lang="pl">
@@ -10,17 +11,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Charity Donations</title>
+    <title><spring:message code="app.titles"/></title>
 
     <link rel="stylesheet" href="${mainURL}resources/css/style.css"/>
 </head>
 <body>
-<header class="header--main-page">
+<header class="header--${headerClass}-page">
     <nav class="container container--70">
+
+        <c:if test="${loggedUser!=null}">
         <ul class="nav--actions">
-            <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li class="logged-user">
+                Witaj ${loggedUser.fullName}
+                <ul class="dropdown">
+                    <li><a href="${mainURL}users/edit">Profil</a></li>
+                    <li><a href="#">Ustawienia</a></li>
+                    <li><a href="${mainURL}users/donations">Moje zbiórki</a></li>
+                    <c:if test="${loggedUser.role.equals('ROLE_ADMIN')}">
+                    <li><a href="${mainURL}admin/institutions">Instutucje</a></li>
+                    <li><a href="${mainURL}admin/users">Użytkownicy</a></li>
+                    </c:if>
+                    <li><a href="${mainURL}logout">Wyloguj</a></li>
+                </ul>
+            </li>
         </ul>
+        </c:if>
+            <c:if test="${loggedUser==null}">
+                <ul class="nav--actions">
+                    <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+                    <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+                </ul>
+            </c:if>
+
+
 
         <ul>
             <li><a href="${mainURL}" class="btn btn--without-border active">Start</a></li>

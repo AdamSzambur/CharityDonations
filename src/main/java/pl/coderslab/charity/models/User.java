@@ -22,6 +22,25 @@ public class User extends AbstractEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    private String role;
+
+    private Boolean available;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 
     public String getEmail() {
         return email;

@@ -1,6 +1,5 @@
 package pl.coderslab.charity.models;
 
-import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "donations")
@@ -45,6 +43,8 @@ public class Donation extends AbstractEntity{
     private LocalTime pickUpTime;
 
     private String pickUpComment;
+
+    private String status;
 
     private LocalDateTime created;
 

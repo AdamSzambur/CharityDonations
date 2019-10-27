@@ -23,12 +23,29 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public boolean isEmailAvailable(String email) {
+        long count = userRepository.countByEmail(email);
+        if (count > 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public void addUpdateUser(UserFormDTO userFormDTO) {
-        User user = new User();
+        User user = userRepository.findByEmail(userFormDTO.getEmail());
+        if (user==null) user = new User();
         user.setEmail(userFormDTO.getEmail());
         user.setFirstName(userFormDTO.getFirstName());
         user.setLastName(userFormDTO.getLastName());
         user.setPassword(passwordEncoder.encode(userFormDTO.getPassword()));
+        user.setRole(userFormDTO.getRole());
+        user.setAvailable(userFormDTO.getAvailable());
         userRepository.save(user);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

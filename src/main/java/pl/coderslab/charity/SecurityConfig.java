@@ -1,5 +1,6 @@
 package pl.coderslab.charity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,14 +20,11 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/charity-donation?serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("coderslab");
-        return  dataSource;
+    private DataSource dataSource;
+
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+
     }
 
     @Bean
@@ -34,24 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    //potrzebujemy tego do pobrania wszystkich dotychczas zalogowanych uzytkowników
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
-    //-----------------------------------
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .dataSource(dataSource())
+                .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT email, password, true FROM users Where email = ?")
                 .authoritiesByUsernameQuery("SELECT email, 'ROLE_USER' FROM users WHERE email = ?");
     }
@@ -63,15 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/users/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout()
+                .and().logout().logoutSuccessUrl("/")
                 .and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-//                .antMatchers("/users/register").permitAll()
-//                .antMatchers("/users/login").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/register").permitAll()
+                .antMatchers("/users/login").permitAll()
 //                .antMatchers("/admin/**").hasRole("ADMIN") //Czyli uzytkownik w bazie ma ROLE_ADMIN dostep do
                 .anyRequest().authenticated();
-//                .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry()); // pobieramy wysztstkich zaloowanych uzytkowników
     }
 
     @Override
