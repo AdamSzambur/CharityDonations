@@ -21,55 +21,16 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hasło</label>
                         <form:password path="password" cssClass="form-control" id="exampleInputPassword1"/>
+                        <br><a class="btn btn--very-small btn--blue" href="#">Przypomnij hasło</a>
                     </div>
                     <div class="form-group text-center">
-                    <button type="submit" class="btn btn--very-small btn--yellow message-btn">Zaloguj</button>
+                    <button type="submit" class="btn btn--small btn--yellow message-btn">Zaloguj użytkownika</button>
                     </div>
                 </form:form>
             </div>
         </div>
-
-
-
     </div>
-
 </section>
-<%--    <div class="slogan container container--90">--%>
-<%--        <div class="slogan--item">--%>
-<%--            <h1>--%>
-<%--                Logowanie użytkownika--%>
-
-<%--                <form:form method="post" modelAttribute="loginUserDTO">--%>
-<%--                    <div class="form-group form-group--inline" align="center">--%>
-<%--                        <label>--%>
-<%--                            <table>--%>
-<%--                                <tr>--%>
-<%--                                    <td align="right">email :</td>--%>
-<%--                                    <td><form:input path="email" cssClass="form-control" id="email"/>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr>--%>
-<%--                                    <td align="right">Hasło :</td>--%>
-<%--                                    <td><form:password path="password" cssClass="form-control" id="password"/>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr>--%>
-<%--                                    <td colspan="2">--%>
-<%--                                        <span class="error_small">${errorMsg}</span>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-
-<%--                            </table>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-group form-group--inline">--%>
-<%--                    <div class="form-group form-group--inline">--%>
-<%--                        <button type="submit" class="btn btn-primary">Zaloguj</button>--%>
-<%--                    </div>--%>
-<%--                </form:form>--%>
-<%--            </h1>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 </header>
 <jsp:include page="footer.jsp"/>
 
