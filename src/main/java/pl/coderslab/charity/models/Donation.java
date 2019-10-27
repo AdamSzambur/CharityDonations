@@ -35,9 +35,10 @@ public class Donation extends AbstractEntity{
 
     private String phone;
 
-    @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
+
+    @Column(nullable = false)
+    private LocalDate plannedPickUpDate;
 
     @Column(nullable = false)
     private LocalTime pickUpTime;
@@ -50,6 +51,17 @@ public class Donation extends AbstractEntity{
 
     private LocalDateTime updated;
 
+    @ManyToOne
+    private User user;
+
+    public LocalDate getPlannedPickUpDate() {
+        return plannedPickUpDate;
+    }
+
+    public void setPlannedPickUpDate(LocalDate plannedPickUpDate) {
+        this.plannedPickUpDate = plannedPickUpDate;
+    }
+
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
@@ -58,6 +70,23 @@ public class Donation extends AbstractEntity{
     @PreUpdate
     public void preUpdate() {
         updated = LocalDateTime.now();
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getQuantity() {

@@ -10,6 +10,7 @@ import pl.coderslab.charity.web.users.UserFormDTO;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -47,5 +48,9 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User getUserById(long userId) {
+        return userRepository.getOne(userId);
     }
 }

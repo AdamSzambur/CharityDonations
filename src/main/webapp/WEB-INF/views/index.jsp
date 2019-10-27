@@ -97,6 +97,7 @@
 
 </section>
 <footer>
+    <br>
     <div id="contact" class="contact">
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
@@ -121,5 +122,13 @@
         </form:form>
         <br><br><br><br><br><br>
     </div>
+    <div class="bottom-line">
+        <span class="bottom-line--copy">Copyright &copy; 2018</span>
+        <div class="bottom-line--icons">
+            <a href="#" class="btn btn--small"><img src="${mainURL}resources/images/icon-facebook.svg"/></a>
+            <a href="#" class="btn btn--small"><img src="${mainURL}resources/images/icon-instagram.svg"/></a>
+        </div>
+    </div>
+</footer>
 <jsp:include page="footer.jsp"/>
 

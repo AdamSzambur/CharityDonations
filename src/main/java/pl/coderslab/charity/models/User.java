@@ -2,8 +2,10 @@ package pl.coderslab.charity.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -22,9 +24,21 @@ public class User extends AbstractEntity {
     @Column(name = "last_name")
     private String lastName;
 
+
+    @OneToMany(mappedBy = "user")
+    private List<Donation> donations;
+
     private String role;
 
     private Boolean available;
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
+    }
 
     public String getRole() {
         return role;

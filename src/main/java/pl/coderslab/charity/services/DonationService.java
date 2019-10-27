@@ -6,6 +6,8 @@ import pl.coderslab.charity.repositories.DonationRepository;
 import pl.coderslab.charity.web.donations.DonationDTO;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional
@@ -38,7 +40,24 @@ public class DonationService {
         donation.setQuantity(donationDTO.getQuantity());
         donation.setStreet(donationDTO.getStreet());
         donation.setZipCode(donationDTO.getZipCode());
-        donation.setPickUpDate(donationDTO.getPickUpDate());
+        donation.setPlannedPickUpDate(donationDTO.getPlannedPickUpDate());
+        donation.setUser(donationDTO.getUser());
+        donation.setStatus("nieodebrane");
+        donationRepository.save(donation);
+    }
+
+    public List<Donation> getAllDonationsByUser(Long userId) {
+        return donationRepository.findAllByUserIdOrderByStatusAscPickUpDateAscCreatedAsc(userId);
+    }
+
+    public Donation getDonationById(Long donationId) {
+        return donationRepository.getOne(donationId);
+    }
+
+    public void changeStatusToReceived(Long id) {
+        Donation donation = donationRepository.getOne(id);
+        donation.setPickUpDate(LocalDate.now());
+        donation.setStatus("odebrane");
         donationRepository.save(donation);
     }
 }

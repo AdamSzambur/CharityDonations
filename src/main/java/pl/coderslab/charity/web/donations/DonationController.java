@@ -58,16 +58,16 @@ public class DonationController {
     public String donationMainPage(Model model){
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         model.addAttribute("actualDate", LocalDate.now().format(inputFormatter));
-        model.addAttribute("donation", new DonationDTO());
+        model.addAttribute("donation", new DonationDTO(loggedUser()));
         model.addAttribute("headerClass", "form");
-        return "donation";
+        return "donationAdd";
     }
 
     @PostMapping
     public String proccessDonationMainPage(@ModelAttribute("donation") @Valid DonationDTO donation, BindingResult result,Model model) {
         if (result.hasErrors()) {
             model.addAttribute("headerClass", "form");
-            return "donation";
+            return "donationAdd";
         }
 
 
