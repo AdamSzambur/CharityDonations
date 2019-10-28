@@ -25,7 +25,7 @@
         <tbody>
 
         <c:forEach items="${donations}" var="donation" varStatus="i">
-            <tr <c:if test="${donation.status.equals('odebrane')}"> class="table-success"</c:if></tr>
+            <tr <c:if test="${donation.status.equals('odebrane')}"> class="table-success"</c:if>>
             <th scope="row">${i.count}</th>
             <td>${donation.created.format(formater)}</td>
             <td>${donation.institution.name}</td>

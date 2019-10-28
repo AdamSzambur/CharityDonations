@@ -40,9 +40,9 @@ public class DonationDetailsController {
     }
 
     @PostMapping
-    public String donationChangeStatus(@RequestParam Long donationId, Model model) {
-        System.out.println(donationId);
-        donationService.changeStatusToReceived(donationId);
-        return "redirect:/users/donations/details?donationId="+donationId;
+    public String donationChangeStatus(@RequestParam Long elementId, Model model) {
+        System.out.println(elementId);
+        donationService.changeStatusToReceived(elementId);
+        return "redirect:/users/donations/details?donationId="+elementId;
     }
 }

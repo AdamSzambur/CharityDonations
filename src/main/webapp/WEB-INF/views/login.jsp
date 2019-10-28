@@ -8,29 +8,52 @@
 
 
 <section class="login-page">
-    <h2>Logowanie użytkownika</h2>
-    <div class="container" style="font-size: 14px">
-        <br>
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-3">
-                <form:form method="post" modelAttribute="loginUserDTO">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Adres email</label>
-                        <form:input path="email" cssClass="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+    <form:form method="post" modelAttribute="loginUserDTO">
+        <div class="container" style="font-size: 14px">
+            <h2>Logowanie użytkownika</h2>
+            <br>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-3 p-3" style="text-align: right">
+                    Email
+                </div>
+
+                <div class="col col-lg-6 p-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        </div>
+                        <form:input path="email" cssClass="form-control" id="email"/>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Hasło</label>
-                        <form:password path="password" cssClass="form-control" id="exampleInputPassword1"/>
-                        <br><a class="btn btn--very-small btn--blue" href="#">Przypomnij hasło</a>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-3 p-3" style="text-align: right">
+                    Hasło
+                </div>
+                <div class="col col-lg-6 p-3">
+                    <div class="input-group">
+                    <form:password path="password" cssClass="form-control col-lg-7" id="password"/>&nbsp;
+                    <a class="btn btn--very-small btn--blue">Przypomnij hasło</a>
                     </div>
-                    <div class="form-group text-center">
-                    <button type="submit" class="btn btn--small btn--yellow message-btn">Zaloguj użytkownika</button>
-                    </div>
-                </form:form>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-7 p-3 text-center">
+                    <button type="submit" class="btn btn--small btn--yellow">Zaloguj</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form:form>
 </section>
 </header>
+<footer>
+    <div class="bottom-line">
+        <span class="bottom-line--copy">Copyright &copy; 2018</span>
+        <div class="bottom-line--icons">
+            <a href="#" class="btn btn--small"><img src="${mainURL}resources/images/icon-facebook.svg"/></a>
+            <a href="#" class="btn btn--small"><img src="${mainURL}resources/images/icon-instagram.svg"/></a>
+        </div>
+    </div>
+</footer>
 <jsp:include page="footer.jsp"/>
 

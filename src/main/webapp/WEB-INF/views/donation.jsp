@@ -114,10 +114,9 @@
         <p style="text-align: center">
             <span class="messageValue justify-content-center" style="font-size: 14px">Czy napewno chcesz zmienić<br>status daru na odebrany ?</span><br>
         <form method="post" class="justify-content-center">
-            <input type="hidden" value="" id="donationId">
+            <input type="hidden" value="" id="elementId" name="elementId">
             <button type="submit" role="button" class="btn btn--very-small btn--green">Zmień status</button>&nbsp;
             <a role="button" class="btn btn--very-small btn--red" href="" onclick="event.preventDefault(); $('#messageBox').toggleClass('invisible');">Anuluj</a>
-
         </form>
         </p>
     </div>

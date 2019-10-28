@@ -2,6 +2,7 @@ package pl.coderslab.charity.services;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.models.Donation;
+import pl.coderslab.charity.models.Institution;
 import pl.coderslab.charity.repositories.DonationRepository;
 import pl.coderslab.charity.web.donations.DonationDTO;
 
@@ -59,5 +60,13 @@ public class DonationService {
         donation.setPickUpDate(LocalDate.now());
         donation.setStatus("odebrane");
         donationRepository.save(donation);
+    }
+
+    public List<Donation> getAllDonationsByInstitution(Institution institution) {
+        return donationRepository.findAllByInstitution(institution);
+    }
+
+    public void delete(Donation donation) {
+        donationRepository.delete(donation);
     }
 }
