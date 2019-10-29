@@ -706,7 +706,7 @@ form .form-group--dropdown .dropdown {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-style: normal;
-  max-width: 200px;
+  max-width: 300px;
   min-height: 38px;
   position: relative;
 }
@@ -1172,7 +1172,7 @@ header nav ul.nav--actions .logged-user ul {
   background-color: #fff;
   padding: 12px 0 0;
   font-size: 1.4rem;
-  width: 120px;
+  width: 180px;
   right: 0;
 }
 

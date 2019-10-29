@@ -29,23 +29,20 @@
                     <li><a href="${mainURL}users/edit">Profil</a></li>
                     <li><a href="${mainURL}users/donations">Moje zbiórki</a></li>
                     <c:if test="${loggedUser.role.equals('ROLE_ADMIN')}">
-                    <li><a href="${mainURL}admin/institutions">Instutucje</a></li>
+                    <li><a href="${mainURL}admin/institutions">Instytucje</a></li>
                     <li><a href="${mainURL}admin/users">Użytkownicy</a></li>
                     </c:if>
-                    <li><a href="${mainURL}logout">Wyloguj</a></li>
+                    <li><a href="${mainURL}logout"><i class="fas fa-sign-out-alt"></i> Wyloguj</a></li>
                 </ul>
             </li>
         </ul>
         </c:if>
             <c:if test="${loggedUser==null}">
                 <ul class="nav--actions">
-                    <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-                    <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+                    <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border"><i class="fas fa-sign-in-alt"></i> Zaloguj</a></li>
+                    <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted"><i class="fas fa-user-plus"></i> Załóż konto</a></li>
                 </ul>
             </c:if>
-
-
-
         <ul>
             <li><a href="${mainURL}" class="btn btn--without-border active">Start</a></li>
             <li><a href="${mainURL}#steps" class="btn btn--without-border">O co chodzi?</a></li>
