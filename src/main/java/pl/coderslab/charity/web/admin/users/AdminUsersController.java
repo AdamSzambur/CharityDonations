@@ -1,17 +1,12 @@
 package pl.coderslab.charity.web.admin.users;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.dto.UserDTO;
-import pl.coderslab.charity.models.Category;
-import pl.coderslab.charity.models.User;
-import pl.coderslab.charity.services.InstitutionService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.services.UserService;
-
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin/users")
@@ -23,16 +18,10 @@ public class AdminUsersController {
         this.userService = userService;
     }
 
-    @ModelAttribute("loggedUser")
-    public UserDTO loggedUser(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByEmail(principal.getName());
-    }
-
     @GetMapping
     public String institutionsMainPage(Model model) {
         model.addAttribute("headerClass", "form");
-        model.addAttribute("users", userService.getAllUsersExceptPrincipal(loggedUser()));
+        model.addAttribute("users", userService.getAllUsersExceptPrincipal());
         return "users";
     }
 

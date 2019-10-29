@@ -1,35 +1,24 @@
 package pl.coderslab.charity.web.users.donations.details;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.dto.UserDTO;
-import pl.coderslab.charity.models.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.services.DonationService;
-import pl.coderslab.charity.services.UserService;
 
-import java.security.Principal;
 import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/users/donations/details")
 public class DonationDetailsController {
 
-
-    private UserService userService;
     private DonationService donationService;
 
 
-    public DonationDetailsController(UserService userService, DonationService donationService) {
-        this.userService = userService;
+    public DonationDetailsController(DonationService donationService) {
         this.donationService = donationService;
-    }
-
-    @ModelAttribute("loggedUser")
-    public UserDTO loggedUser(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByEmail(principal.getName());
     }
 
     @GetMapping
@@ -44,6 +33,6 @@ public class DonationDetailsController {
     public String donationChangeStatus(@RequestParam Long elementId, Model model) {
         System.out.println(elementId);
         donationService.changeStatusToReceived(elementId);
-        return "redirect:/users/donations/details?donationId="+elementId;
+        return "redirect:/users/donations/details?donationId=" + elementId;
     }
 }

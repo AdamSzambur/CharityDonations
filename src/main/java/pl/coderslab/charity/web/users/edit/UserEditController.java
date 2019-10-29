@@ -1,7 +1,5 @@
 package pl.coderslab.charity.web.users.edit;
 
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,9 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.dto.UserDTO;
-import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.UserService;
-
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -25,13 +21,6 @@ public class UserEditController {
     public UserEditController(UserService userService) {
         this.userService = userService;
     }
-
-    @ModelAttribute("loggedUser")
-    public UserDTO loggedUser(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByEmail(principal.getName());
-    }
-
 
     @GetMapping
     public String editUserPage(Model model, Principal principal) {
@@ -48,7 +37,7 @@ public class UserEditController {
         }
 
         if (!userFormDTO.getPassword().equals(userFormDTO.getRePassword())) {
-            result.rejectValue("rePassword", null,"Hasła muszą być zgodne");
+            result.rejectValue("rePassword", null, "Hasła muszą być takie same");
             return "editUser";
         }
 

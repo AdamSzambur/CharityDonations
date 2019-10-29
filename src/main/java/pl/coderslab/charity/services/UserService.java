@@ -2,6 +2,7 @@ package pl.coderslab.charity.services;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.dto.DonationDTO;
@@ -55,9 +56,9 @@ public class UserService {
         return mapper.map(userRepository.getOne(userId),UserDTO.class);
     }
 
-    public List<UserDTO> getAllUsersExceptPrincipal(UserDTO user) {
+    public List<UserDTO> getAllUsersExceptPrincipal() {
         List<UserDTO> result = mapper.map(userRepository.findAll(),targetListUserDTO);
-        result.remove(user);
+        result.remove(mapper.map(userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()),UserDTO.class));
         return result;
     }
 

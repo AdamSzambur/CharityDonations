@@ -1,11 +1,9 @@
 package pl.coderslab.charity.web.users.donations;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.dto.UserDTO;
-import pl.coderslab.charity.models.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.services.DonationService;
 import pl.coderslab.charity.services.UserService;
 
@@ -16,25 +14,17 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/users/donations")
 public class UserDomationsController {
 
-
-    private UserService userService;
     private DonationService donationService;
+    private UserService userService;
 
-
-    public UserDomationsController(UserService userService, DonationService donationService) {
-        this.userService = userService;
+    public UserDomationsController(DonationService donationService, UserService userService) {
         this.donationService = donationService;
-    }
-
-    @ModelAttribute("loggedUser")
-    public UserDTO loggedUser(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByEmail(principal.getName());
+        this.userService = userService;
     }
 
     @GetMapping
-    public String userDonationsPage(Model model) {
-        model.addAttribute("donations", donationService.getAllDonationsByUser(loggedUser().getId()));
+    public String userDonationsPage(Model model, Principal principal) {
+        model.addAttribute("donations", donationService.getAllDonationsByUser(userService.getUserByEmail(principal.getName()).getId()));
         model.addAttribute("formater", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         model.addAttribute("headerClass", "form");
         return "donationsUser";

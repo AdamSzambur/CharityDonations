@@ -25,18 +25,9 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
 
-    InstitutionService institutionService;
-    DonationService donationService;
-    UserService userService;
-    EmailService emailService;
-
-
-
-    @ModelAttribute("loggedUser")
-    public UserDTO loggedUser(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByEmail(principal.getName());
-    }
+    private InstitutionService institutionService;
+    private DonationService donationService;
+    private EmailService emailService;
 
     @ModelAttribute("sumOfQuantity")
     public Integer sumOfQuantity(){
@@ -55,10 +46,9 @@ public class HomeController {
 
 
     public HomeController(InstitutionService institutionService, DonationService donationService,
-                          UserService userService, EmailService emailService) {
+                          EmailService emailService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
-        this.userService = userService;
         this.emailService = emailService;
     }
 

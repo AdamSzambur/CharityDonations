@@ -27,7 +27,6 @@
                 Witaj ${loggedUser.fullName}
                 <ul class="dropdown">
                     <li><a href="${mainURL}users/edit">Profil</a></li>
-                    <li><a href="#">Ustawienia</a></li>
                     <li><a href="${mainURL}users/donations">Moje zbiórki</a></li>
                     <c:if test="${loggedUser.role.equals('ROLE_ADMIN')}">
                     <li><a href="${mainURL}admin/institutions">Instutucje</a></li>

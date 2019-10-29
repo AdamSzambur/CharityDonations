@@ -1,4 +1,4 @@
-package pl.coderslab.charity.web.users.login;
+package pl.coderslab.charity.dto;
 
 import lombok.Data;
 
