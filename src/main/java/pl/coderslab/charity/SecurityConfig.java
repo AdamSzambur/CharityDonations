@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/users/login").permitAll()
-//                .antMatchers("/admin/**").hasRole("ADMIN") //Czyli uzytkownik w bazie ma ROLE_ADMIN dostep do
+                .antMatchers("/admin/**").hasRole("ADMIN") //Czyli uzytkownik w bazie ma ROLE_ADMIN dostep do
                 .anyRequest().authenticated();
     }
 
