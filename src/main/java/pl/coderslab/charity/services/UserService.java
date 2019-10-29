@@ -1,18 +1,17 @@
 package pl.coderslab.charity.services;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.models.Category;
-import pl.coderslab.charity.models.Donation;
+import pl.coderslab.charity.dto.DonationDTO;
 import pl.coderslab.charity.models.User;
-import pl.coderslab.charity.repositories.CategoryRepository;
 import pl.coderslab.charity.repositories.UserRepository;
-import pl.coderslab.charity.web.admin.users.edit.UserDTO;
-import pl.coderslab.charity.web.users.UserFormDTO;
+import pl.coderslab.charity.dto.UserDTO;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,6 +20,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     private DonationService donationService;
 
+    private ModelMapper mapper = new ModelMapper();
+    private Type targetListUserDTO = new TypeToken<List<UserDTO>>() {}.getType();
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationService donationService) {
         this.userRepository = userRepository;
@@ -38,28 +39,24 @@ public class UserService {
         }
     }
 
-    public void addUpdateUser(UserFormDTO userFormDTO) {
-        User user = userRepository.findByEmail(userFormDTO.getEmail());
-        if (user==null) user = new User();
-        user.setEmail(userFormDTO.getEmail());
-        user.setFirstName(userFormDTO.getFirstName());
-        user.setLastName(userFormDTO.getLastName());
-        user.setPassword(passwordEncoder.encode(userFormDTO.getPassword()));
-        user.setRole(userFormDTO.getRole());
-        user.setAvailable(userFormDTO.getAvailable());
+    public void addUpdateUser(UserDTO userFormDTO) {
+        User user = mapper.map(userFormDTO,User.class);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserDTO getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user!=null) return mapper.map(userRepository.findByEmail(email),UserDTO.class);
+        return null;
     }
 
-    public User getUserById(long userId) {
-        return userRepository.getOne(userId);
+    public UserDTO getUserById(long userId) {
+        return mapper.map(userRepository.getOne(userId),UserDTO.class);
     }
 
-    public List<User> getAllUsersExceptPrincipal(User user) {
-        List<User> result = userRepository.findAll();
+    public List<UserDTO> getAllUsersExceptPrincipal(UserDTO user) {
+        List<UserDTO> result = mapper.map(userRepository.findAll(),targetListUserDTO);
         result.remove(user);
         return result;
     }
@@ -73,8 +70,8 @@ public class UserService {
 
     public void removeUserById(Long elementId) {
         User user = userRepository.getOne(elementId);
-        List<Donation> donationList = donationService.getAllDonationsByUser(user.getId());
-        donationList.forEach(d->donationService.delete(d));
+        List<DonationDTO> donationList = donationService.getAllDonationsByUser(user.getId());
+        donationList.forEach(d->donationService.delete(d.getId()));
         userRepository.delete(userRepository.getOne(elementId));
     }
 }

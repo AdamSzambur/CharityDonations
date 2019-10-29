@@ -1,4 +1,4 @@
-package pl.coderslab.charity.web.donations;
+package pl.coderslab.charity.dto;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +14,8 @@ import java.util.List;
 
 @Data
 public class DonationDTO {
+
+    private Long id;
 
     private User user;
 
@@ -46,10 +48,6 @@ public class DonationDTO {
     private LocalTime pickUpTime;
 
     private String pickUpComment;
-
-    public DonationDTO(User user) {
-        this.user = user;
-    }
 
     public DonationDTO() {
     }

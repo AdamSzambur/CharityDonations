@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.UserService;
-import pl.coderslab.charity.web.users.UserFormDTO;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -27,19 +27,19 @@ public class RegisterController {
     }
 
     @ModelAttribute("loggedUser")
-    public User loggedUser(){
+    public UserDTO loggedUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }
 
     @GetMapping
     public String registerUserPage(Model model) {
-        model.addAttribute("userFormDTO", new UserFormDTO("ROLE_USER",true));
+        model.addAttribute("userFormDTO", new UserDTO("ROLE_USER",true));
         return "register";
     }
 
     @PostMapping
-    public String registerUserPage(@ModelAttribute("userFormDTO") @Valid UserFormDTO userFormDTO, BindingResult result) {
+    public String registerUserPage(@ModelAttribute("userFormDTO") @Valid UserDTO userFormDTO, BindingResult result) {
         if (result.hasErrors()) {
             return "register";
         }

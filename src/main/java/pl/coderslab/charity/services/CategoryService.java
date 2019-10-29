@@ -1,10 +1,14 @@
 package pl.coderslab.charity.services;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.dto.CategoryDTO;
 import pl.coderslab.charity.models.Category;
 import pl.coderslab.charity.repositories.CategoryRepository;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
@@ -12,17 +16,18 @@ import java.util.List;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
+    private ModelMapper mapper = new ModelMapper();
+    private Type targetListType = new TypeToken<List<CategoryDTO>>() {}.getType();
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDTO> getAllCategories() {
+        return mapper.map(categoryRepository.findAll(), targetListType);
     }
 
-    public Category getCategoryById(long categoryId) {
-        return categoryRepository.getOne(categoryId);
+    public CategoryDTO getCategoryById(long categoryId) {
+        return mapper.map(categoryRepository.getOne(categoryId), CategoryDTO.class);
     }
 }

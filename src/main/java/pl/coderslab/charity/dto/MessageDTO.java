@@ -1,4 +1,4 @@
-package pl.coderslab.charity.web;
+package pl.coderslab.charity.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

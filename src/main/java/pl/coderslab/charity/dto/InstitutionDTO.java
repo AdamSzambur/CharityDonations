@@ -1,4 +1,4 @@
-package pl.coderslab.charity.web.admin.institutions.editAdd;
+package pl.coderslab.charity.dto;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,12 +21,6 @@ public class InstitutionDTO {
     private String name;
 
     private String description;
-
-    public InstitutionDTO(Institution institution) {
-        this.id = institution.getId();
-        this.name = institution.getName();
-        this.description = institution.getDescription();
-    }
 
     public InstitutionDTO() {
 

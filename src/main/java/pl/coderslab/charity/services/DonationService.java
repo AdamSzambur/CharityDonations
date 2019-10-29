@@ -1,12 +1,19 @@
 package pl.coderslab.charity.services;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.dto.CategoryDTO;
 import pl.coderslab.charity.models.Donation;
 import pl.coderslab.charity.models.Institution;
 import pl.coderslab.charity.repositories.DonationRepository;
-import pl.coderslab.charity.web.donations.DonationDTO;
+import pl.coderslab.charity.dto.DonationDTO;
+import pl.coderslab.charity.repositories.UserRepository;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Type;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,6 +22,11 @@ import java.util.List;
 public class DonationService {
 
     private DonationRepository donationRepository;
+    private UserRepository userRepository;
+
+    private ModelMapper mapper = new ModelMapper();
+    private Type targetListDonationDTO = new TypeToken<List<DonationDTO>>() {}.getType();
+
 
     public DonationService(DonationRepository donationRepository) {
         this.donationRepository = donationRepository;
@@ -31,28 +43,18 @@ public class DonationService {
     }
 
     public void addDonation(DonationDTO donationDTO) {
-        Donation donation = new Donation();
-        donation.setCategories(donationDTO.getCategories());
-        donation.setCity(donationDTO.getCity());
-        donation.setInstitution(donationDTO.getInstitution());
-        donation.setPhone(donationDTO.getPhone());
-        donation.setPickUpComment(donationDTO.getPickUpComment());
-        donation.setPickUpTime(donationDTO.getPickUpTime());
-        donation.setQuantity(donationDTO.getQuantity());
-        donation.setStreet(donationDTO.getStreet());
-        donation.setZipCode(donationDTO.getZipCode());
-        donation.setPlannedPickUpDate(donationDTO.getPlannedPickUpDate());
-        donation.setUser(donationDTO.getUser());
+        Donation donation = mapper.map(donationDTO,Donation.class);
+        donation.setUser(userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
         donation.setStatus("nieodebrane");
         donationRepository.save(donation);
     }
 
-    public List<Donation> getAllDonationsByUser(Long userId) {
-        return donationRepository.findAllByUserIdOrderByStatusAscPickUpDateAscCreatedAsc(userId);
+    public List<DonationDTO> getAllDonationsByUser(Long userId) {
+        return mapper.map(donationRepository.findAllByUserIdOrderByStatusAscPickUpDateAscCreatedAsc(userId),targetListDonationDTO);
     }
 
-    public Donation getDonationById(Long donationId) {
-        return donationRepository.getOne(donationId);
+    public DonationDTO getDonationById(Long donationId) {
+        return mapper.map(donationRepository.getOne(donationId), DonationDTO.class);
     }
 
     public void changeStatusToReceived(Long id) {
@@ -62,11 +64,11 @@ public class DonationService {
         donationRepository.save(donation);
     }
 
-    public List<Donation> getAllDonationsByInstitution(Institution institution) {
-        return donationRepository.findAllByInstitution(institution);
+    public List<DonationDTO> getAllDonationsByInstitution(Institution institution) {
+        return mapper.map(donationRepository.findAllByInstitution(institution),targetListDonationDTO);
     }
 
-    public void delete(Donation donation) {
-        donationRepository.delete(donation);
+    public void delete(Long donationId) {
+        donationRepository.delete(donationRepository.getOne(donationId));
     }
 }

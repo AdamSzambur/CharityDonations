@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.charity.models.Institution;
-import pl.coderslab.charity.models.User;
+import pl.coderslab.charity.dto.InstitutionDTO;
+import pl.coderslab.charity.dto.MessageDTO;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.services.DonationService;
 import pl.coderslab.charity.services.EmailService;
 import pl.coderslab.charity.services.InstitutionService;
@@ -32,7 +33,7 @@ public class HomeController {
 
 
     @ModelAttribute("loggedUser")
-    public User loggedUser(){
+    public UserDTO loggedUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }
@@ -48,7 +49,7 @@ public class HomeController {
     }
 
     @ModelAttribute("institutions")
-    public List<Institution> institutions(){
+    public List<InstitutionDTO> institutions(){
         return institutionService.getAllInstitutions();
     }
 

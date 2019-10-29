@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.dto.InstitutionDTO;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.InstitutionService;
 import pl.coderslab.charity.services.UserService;
@@ -26,7 +28,7 @@ public class InstitutionEditController {
     }
 
     @ModelAttribute("loggedUser")
-    public User loggedUser(){
+    public UserDTO loggedUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }
@@ -35,7 +37,7 @@ public class InstitutionEditController {
     public String institutionEditMainPage(@RequestParam(required = false) Long institutionId, Model model) {
         model.addAttribute("headerClass", "form");
         if (institutionId!=null) {
-            model.addAttribute("institutionDTO", new InstitutionDTO(institutionService.getInstitutionById(institutionId)));
+            model.addAttribute("institutionDTO", institutionService.getInstitutionById(institutionId));
             model.addAttribute("title","Szczegóły instytucji");
         } else {
             model.addAttribute("institutionDTO", new InstitutionDTO());

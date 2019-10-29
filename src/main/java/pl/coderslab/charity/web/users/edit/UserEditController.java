@@ -1,8 +1,6 @@
 package pl.coderslab.charity.web.users.edit;
 
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.UserService;
-import pl.coderslab.charity.web.users.UserFormDTO;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -29,7 +27,7 @@ public class UserEditController {
     }
 
     @ModelAttribute("loggedUser")
-    public User loggedUser(){
+    public UserDTO loggedUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }
@@ -37,13 +35,13 @@ public class UserEditController {
 
     @GetMapping
     public String editUserPage(Model model, Principal principal) {
-        model.addAttribute("userFormDTO", new UserFormDTO(userService.getUserByEmail(principal.getName())));
+        model.addAttribute("userFormDTO", userService.getUserByEmail(principal.getName()));
         model.addAttribute("headerClass", "form");
         return "editUser";
     }
 
     @PostMapping
-    public String editUserPage(@ModelAttribute("userFormDTO") @Valid UserFormDTO userFormDTO, BindingResult result, Model model) {
+    public String editUserPage(@ModelAttribute("userFormDTO") @Valid UserDTO userFormDTO, BindingResult result, Model model) {
         model.addAttribute("headerClass", "form");
         if (result.hasErrors()) {
             return "editUser";

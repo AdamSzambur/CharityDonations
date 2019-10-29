@@ -4,6 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.services.DonationService;
 import pl.coderslab.charity.services.UserService;
@@ -26,7 +27,7 @@ public class DonationDetailsController {
     }
 
     @ModelAttribute("loggedUser")
-    public User loggedUser(){
+    public UserDTO loggedUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }

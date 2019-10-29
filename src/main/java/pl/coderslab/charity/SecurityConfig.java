@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT email, password, available FROM users Where email = ?")
-                .authoritiesByUsernameQuery("SELECT email, 'ROLE_USER' FROM users WHERE email = ?");
+                .authoritiesByUsernameQuery("SELECT email, role FROM users WHERE email = ?");
     }
 
     @Override

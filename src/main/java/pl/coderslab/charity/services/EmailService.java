@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.web.MessageDTO;
+import pl.coderslab.charity.dto.MessageDTO;
 
 @Service
 public class EmailService {

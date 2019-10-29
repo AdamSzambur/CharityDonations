@@ -1,4 +1,4 @@
-package pl.coderslab.charity.web.users;
+package pl.coderslab.charity.dto;
 
 import lombok.Data;
 import pl.coderslab.charity.models.User;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
-public class UserFormDTO {
+public class UserDTO {
 
     private Long id;
 
@@ -36,21 +36,15 @@ public class UserFormDTO {
     private Boolean available;
 
 
+    private String fullName;
 
-    public UserFormDTO() {
+
+    public UserDTO() {
+        this.fullName = this.firstName + " " + this.lastName;
     }
 
-    public UserFormDTO(String role, Boolean available) {
+    public UserDTO(String role, Boolean available) {
         setRole(role);
         setAvailable(available);
-    }
-
-    public UserFormDTO(User user) {
-        setId(user.getId());
-        setRole(user.getRole());
-        setAvailable(user.getAvailable());
-        setEmail(user.getEmail());
-        setFirstName(user.getFirstName());
-        setLastName((user.getLastName()));
     }
 }
