@@ -6,6 +6,7 @@ import pl.coderslab.charity.models.User;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 @Data
 public class UserDTO {
@@ -35,9 +36,9 @@ public class UserDTO {
 
     private Boolean available;
 
-
     private String fullName;
 
+    private UUID uuid;
 
     public UserDTO() {
         this.fullName = this.firstName + " " + this.lastName;
@@ -47,4 +48,6 @@ public class UserDTO {
         setRole(role);
         setAvailable(available);
     }
+
+
 }

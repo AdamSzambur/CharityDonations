@@ -75,4 +75,14 @@ public class UserService {
         donationList.forEach(d->donationService.delete(d.getId()));
         userRepository.delete(userRepository.getOne(elementId));
     }
+
+    public boolean checkEmailUUID(String email, String uuid) {
+        return userRepository.findByEmail(email).getUuid().toString().equals(uuid);
+    }
+
+    public void updateAvailable(String userEmail, boolean available) {
+        User user = userRepository.findByEmail(userEmail);
+        user.setAvailable(true);
+        userRepository.save(user);
+    }
 }

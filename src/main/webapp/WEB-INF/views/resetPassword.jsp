@@ -6,15 +6,16 @@
 <c:url value="/" var="mainURL"/>
 <jsp:include page="header.jsp"/>
 
-
 <section class="login-page">
-    <form:form method="post" modelAttribute="loginUserDTO">
+    <form method="post">
         <div class="container" style="font-size: 14px">
-            <h2>Logowanie użytkownika</h2>
+            <h2>Resetowanie hasła</h2>
             <br>
+
+            <c:if test="${message==null}">
             <div class="row justify-content-md-center">
-                <div class="col col-lg-3 p-3" style="text-align: right">
-                    Email
+                <div class="col col-lg-6 p-3" style="text-align: right">
+                    Podaj email na który mamy wysłać link do resetowania hasła
                 </div>
 
                 <div class="col col-lg-6 p-3">
@@ -22,28 +23,26 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
-                        <form:input path="email" cssClass="form-control" id="email"/>
+                        <input type="email" name="email">
+                        <span class="error"><br>${error}</span>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-md-center">
-                <div class="col col-lg-3 p-3" style="text-align: right">
-                    Hasło
+                <div class="col col-lg-12 p-3 text-center">
+                    <button type="submit" class="btn btn--small btn--yellow">Wyślij</button>
                 </div>
-                <div class="col col-lg-6 p-3">
-                    <div class="input-group">
-                    <form:password path="password" cssClass="form-control col-lg-7" id="password"/>&nbsp;
-                    <a href="${mainURL}users/reset_password" class="btn btn--very-small btn--blue">Przypomnij hasło</a>
+            </div>
+            </c:if>
+            <c:if test="${message!=null}">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-12 p-3" style="text-align: right">
+                        <span class="error">${message}</span>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-md-center">
-                <div class="col col-lg-7 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow">Zaloguj</button>
-                </div>
-            </div>
+            </c:if>
         </div>
-    </form:form>
+    </form>
 </section>
 </header>
 <footer>

@@ -73,7 +73,7 @@ public class HomeController {
             return "index";
         }
 
-        emailService.sendEmail(messageDTO);
+        emailService.sendMessage(messageDTO);
         model.addAttribute("headerClass", "form");
         return "formConfirmation";
     }

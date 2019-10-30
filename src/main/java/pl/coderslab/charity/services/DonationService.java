@@ -4,16 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.dto.CategoryDTO;
+import pl.coderslab.charity.dto.DonationDTO;
 import pl.coderslab.charity.models.Donation;
 import pl.coderslab.charity.models.Institution;
 import pl.coderslab.charity.repositories.DonationRepository;
-import pl.coderslab.charity.dto.DonationDTO;
 import pl.coderslab.charity.repositories.UserRepository;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Type;
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,16 +23,18 @@ public class DonationService {
     private UserRepository userRepository;
 
     private ModelMapper mapper = new ModelMapper();
-    private Type targetListDonationDTO = new TypeToken<List<DonationDTO>>() {}.getType();
+    private Type targetListDonationDTO = new TypeToken<List<DonationDTO>>() {
+    }.getType();
 
 
-    public DonationService(DonationRepository donationRepository) {
+    public DonationService(DonationRepository donationRepository, UserRepository userRepository) {
         this.donationRepository = donationRepository;
+        this.userRepository = userRepository;
     }
 
     public Integer getSumOfQuantity() {
         Integer result = donationRepository.sumOfQuantityForAllDoantions();
-        if (result!=null) return result;
+        if (result != null) return result;
         return 0;
     }
 
@@ -43,14 +43,14 @@ public class DonationService {
     }
 
     public void addDonation(DonationDTO donationDTO) {
-        Donation donation = mapper.map(donationDTO,Donation.class);
+        Donation donation = mapper.map(donationDTO, Donation.class);
         donation.setUser(userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
         donation.setStatus("nieodebrane");
         donationRepository.save(donation);
     }
 
     public List<DonationDTO> getAllDonationsByUser(Long userId) {
-        return mapper.map(donationRepository.findAllByUserIdOrderByStatusAscPickUpDateAscCreatedAsc(userId),targetListDonationDTO);
+        return mapper.map(donationRepository.findAllByUserIdOrderByStatusAscPickUpDateAscCreatedAsc(userId), targetListDonationDTO);
     }
 
     public DonationDTO getDonationById(Long donationId) {
@@ -65,7 +65,7 @@ public class DonationService {
     }
 
     public List<DonationDTO> getAllDonationsByInstitution(Institution institution) {
-        return mapper.map(donationRepository.findAllByInstitution(institution),targetListDonationDTO);
+        return mapper.map(donationRepository.findAllByInstitution(institution), targetListDonationDTO);
     }
 
     public void delete(Long donationId) {

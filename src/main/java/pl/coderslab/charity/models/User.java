@@ -1,11 +1,11 @@
 package pl.coderslab.charity.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name="users")
@@ -24,13 +24,33 @@ public class User extends AbstractEntity {
     @Column(name = "last_name")
     private String lastName;
 
-
     @OneToMany(mappedBy = "user")
     private List<Donation> donations;
 
     private String role;
 
     private Boolean available;
+
+    private UUID uuid;
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        uuid = UUID.randomUUID();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        uuid = UUID.randomUUID();
+    }
+
 
     public List<Donation> getDonations() {
         return donations;

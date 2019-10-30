@@ -10,6 +10,7 @@
     <form:form method="post" modelAttribute="userFormDTO">
         <form:hidden path="available"/>
         <form:hidden path="role"/>
+
         <div class="container" style="font-size: 14px">
             <h2>Dodawanie użytkownika</h2>
             <br>

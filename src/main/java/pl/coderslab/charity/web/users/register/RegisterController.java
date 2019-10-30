@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.dto.UserDTO;
+import pl.coderslab.charity.services.EmailService;
 import pl.coderslab.charity.services.UserService;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -17,14 +20,18 @@ import javax.validation.Valid;
 public class RegisterController {
 
     private UserService userService;
+    EmailService emailService;
+    HttpServletRequest servletRequest;
 
-    public RegisterController(UserService userService) {
+    public RegisterController(UserService userService, EmailService emailService, HttpServletRequest servletRequest) {
         this.userService = userService;
+        this.emailService = emailService;
+        this.servletRequest = servletRequest;
     }
 
     @GetMapping
     public String registerUserPage(Model model) {
-        model.addAttribute("userFormDTO", new UserDTO("ROLE_USER", true));
+        model.addAttribute("userFormDTO", new UserDTO("ROLE_USER", false));
         return "register";
     }
 
@@ -44,7 +51,9 @@ public class RegisterController {
             return "register";
         }
 
+        String serverAddress = servletRequest.getRequestURL().substring(0,servletRequest.getRequestURL().length()-servletRequest.getRequestURI().length());
         userService.addUpdateUser(userFormDTO);
-        return "redirect:/";
+        emailService.sendActiveUser(userFormDTO.getEmail(),serverAddress);
+        return "redirect:/users/register_process";
     }
 }
