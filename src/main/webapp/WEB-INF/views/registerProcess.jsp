@@ -12,7 +12,7 @@
             <br>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-12 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow"><span class="error">${message}</span></button>
+                    <span class="error">${message}</span>
                 </div>
             </div>
         </div>

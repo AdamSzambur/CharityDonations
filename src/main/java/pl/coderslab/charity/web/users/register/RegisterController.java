@@ -54,6 +54,7 @@ public class RegisterController {
         String serverAddress = servletRequest.getRequestURL().substring(0,servletRequest.getRequestURL().length()-servletRequest.getRequestURI().length());
         userService.addUpdateUser(userFormDTO);
         emailService.sendActiveUser(userFormDTO.getEmail(),serverAddress);
+
         return "redirect:/users/register_process";
     }
 }

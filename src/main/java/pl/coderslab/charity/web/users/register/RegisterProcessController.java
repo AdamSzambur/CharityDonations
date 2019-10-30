@@ -23,15 +23,14 @@ public class RegisterProcessController {
     @GetMapping
     public String resetPage(@RequestParam(required = false) String userUUID, @RequestParam(required = false) String userEmail,
                             Model model) {
-
-        if ((userUUID==null)&&(userEmail==null)) {
-            model.addAttribute("message", "Wysłano na podany email link do aktywacji konta");
-        } else if (userService.checkEmailUUID(userEmail,userUUID)){
-            model.addAttribute("message","Link nie jest już aktywny");
+        if (userEmail!=null) {
+            if (userService.checkEmailUUID(userEmail,userUUID)) {
+                userService.updateAvailable(userEmail,true);
+                model.addAttribute("message","Konto zostało aktywowane");
+            }
         } else {
-            userService.updateAvailable(userEmail,true);
-            model.addAttribute("message","Konto zostało aktywowane");
+            model.addAttribute("message", "Wysłano na podany email link do aktywacji konta");
         }
-        return "resetPasswordProcess";
+        return "registerProcess";
     }
 }

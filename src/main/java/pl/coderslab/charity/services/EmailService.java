@@ -45,7 +45,6 @@ public class EmailService {
 
     public void sendActiveUser(String email, String serverAddress) {
         User user = userRepository.findByEmail(email);
-
         String htmlMsg = "Nacisnij <a href='"
                 + serverAddress + "/users/register_process?userEmail="
                 + email + "&userUUID="
