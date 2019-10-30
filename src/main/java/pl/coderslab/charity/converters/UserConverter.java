@@ -17,6 +17,6 @@ public class UserConverter implements Converter<String, UserDTO> {
 
     @Override
     public UserDTO convert(String s) {
-        return userService.getUserById(Long.parseLong(s));
+        return userService.getUserById(Long.parseLong(s), UserDTO.class);
     }
 }

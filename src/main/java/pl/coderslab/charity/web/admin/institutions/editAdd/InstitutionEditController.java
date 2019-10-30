@@ -22,7 +22,6 @@ public class InstitutionEditController {
 
     @GetMapping
     public String institutionEditMainPage(@RequestParam(required = false) Long institutionId, Model model) {
-        model.addAttribute("headerClass", "form");
         if (institutionId != null) {
             model.addAttribute("institutionDTO", institutionService.getInstitutionById(institutionId));
             model.addAttribute("title", "Szczegóły instytucji");
@@ -36,7 +35,6 @@ public class InstitutionEditController {
     @PostMapping
     public String processEditMainPage(@ModelAttribute("institutionDTO") @Valid InstitutionDTO institutionDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("headerClass", "form");
             if (institutionDTO.getId() != null) {
                 model.addAttribute("title", "Szczegóły instytucji");
             } else {

@@ -20,7 +20,6 @@ public class AdminUsersController {
 
     @GetMapping
     public String institutionsMainPage(Model model) {
-        model.addAttribute("headerClass", "form");
         model.addAttribute("users", userService.getAllUsersExceptPrincipal());
         return "users";
     }

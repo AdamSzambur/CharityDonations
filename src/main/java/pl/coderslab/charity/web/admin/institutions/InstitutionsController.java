@@ -21,7 +21,6 @@ public class InstitutionsController {
 
     @GetMapping
     public String institutionsMainPage(Model model) {
-        model.addAttribute("headerClass", "form");
         model.addAttribute("institutions", institutionService.getAllInstitutions());
         return "institutions";
     }

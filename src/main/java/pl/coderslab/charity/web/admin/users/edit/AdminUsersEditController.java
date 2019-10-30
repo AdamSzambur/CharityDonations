@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.dto.UserDTO;
+import pl.coderslab.charity.dto.UserSimpleDTO;
 import pl.coderslab.charity.services.UserService;
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -27,16 +28,14 @@ public class AdminUsersEditController {
 
     @GetMapping
     public String institutionsMainPage(@RequestParam Long userId, Model model) {
-        model.addAttribute("headerClass", "form");
-        model.addAttribute("userDTO", userService.getUserById(userId));
+        model.addAttribute("userDTO", userService.getUserById(userId, UserSimpleDTO.class));
         return "user";
     }
 
 
     @PostMapping
-    public String institutionDelete(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult result, Model model) {
+    public String institutionDelete(@ModelAttribute("userDTO") @Valid UserSimpleDTO userDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("headerClass", "form");
             return "user";
         }
         userService.updateRoleAndAvailable(userDTO);

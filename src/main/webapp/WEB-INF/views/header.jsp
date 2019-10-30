@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:url value="/" var="mainURL"/>
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,31 +24,31 @@
         <c:if test="${loggedUser!=null}">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${loggedUser.fullName}
+                <spring:message code="userMenu.hello"/> ${loggedUser.fullName}
                 <ul class="dropdown">
-                    <li><a href="${mainURL}users/edit">Profil</a></li>
-                    <li><a href="${mainURL}users/donations">Moje zbiórki</a></li>
+                    <li><a href="${mainURL}users/edit"><spring:message code="userMenu.button.profile"/></a></li>
+                    <li><a href="${mainURL}users/donations"><spring:message code="userMenu.button.myDonations"/></a></li>
                     <c:if test="${loggedUser.role.equals('ROLE_ADMIN')}">
-                    <li><a href="${mainURL}admin/institutions">Instytucje</a></li>
-                    <li><a href="${mainURL}admin/users">Użytkownicy</a></li>
+                    <li><a href="${mainURL}admin/institutions"><spring:message code="userMenu.button.institutions"/></a></li>
+                    <li><a href="${mainURL}admin/users"><spring:message code="userMenu.button.users"/></a></li>
                     </c:if>
-                    <li><a href="${mainURL}logout"><i class="fas fa-sign-out-alt"></i> Wyloguj</a></li>
+                    <li><a href="${mainURL}logout"><i class="fas fa-sign-out-alt"></i> <spring:message code="userMenu.button.signOut"/></a></li>
                 </ul>
             </li>
         </ul>
         </c:if>
             <c:if test="${loggedUser==null}">
                 <ul class="nav--actions">
-                    <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border"><i class="fas fa-sign-in-alt"></i> Zaloguj</a></li>
-                    <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted"><i class="fas fa-user-plus"></i> Załóż konto</a></li>
+                    <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border"><i class="fas fa-sign-in-alt"></i> <spring:message code="mainMenu.button.signIn"/></a></li>
+                    <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted"><i class="fas fa-user-plus"></i> <spring:message code="mainMenu.button.signUp"/></a></li>
                 </ul>
             </c:if>
         <ul>
-            <li><a href="${mainURL}" class="btn btn--without-border active">Start</a></li>
-            <li><a href="${mainURL}#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="${mainURL}#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="${mainURL}#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="${mainURL}donations" class="btn btn--without-border">Przekaż dary</a></li>
-            <li><a href="${mainURL}#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="${mainURL}" class="btn btn--without-border active"><spring:message code="mainMenu.button.start"/> </a></li>
+            <li><a href="${mainURL}#steps" class="btn btn--without-border"><spring:message code="mainMenu.button.description"/></a></li>
+            <li><a href="${mainURL}#about-us" class="btn btn--without-border"><spring:message code="mainMenu.button.about"/></a></li>
+            <li><a href="${mainURL}#help" class="btn btn--without-border"><spring:message code="mainMenu.button.institutions"/></a></li>
+            <li><a href="${mainURL}donations" class="btn btn--without-border"><spring:message code="mainMenu.button.giveDonations"/></a></li>
+            <li><a href="${mainURL}#contact" class="btn btn--without-border"><spring:message code="mainMenu.button.contact"/></a></li>
         </ul>
     </nav>

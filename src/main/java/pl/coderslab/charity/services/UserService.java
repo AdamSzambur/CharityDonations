@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.dto.DonationDTO;
+import pl.coderslab.charity.dto.UserSimpleDTO;
 import pl.coderslab.charity.models.User;
 import pl.coderslab.charity.repositories.UserRepository;
 import pl.coderslab.charity.dto.UserDTO;
@@ -52,8 +53,8 @@ public class UserService {
         return null;
     }
 
-    public UserDTO getUserById(long userId) {
-        return mapper.map(userRepository.getOne(userId),UserDTO.class);
+    public <T> T getUserById(Long userId, Class<T> type) {
+        return mapper.map(userRepository.getOne(userId),type);
     }
 
     public List<UserDTO> getAllUsersExceptPrincipal() {
@@ -62,7 +63,7 @@ public class UserService {
         return result;
     }
 
-    public void updateRoleAndAvailable(UserDTO userDTO) {
+    public void updateRoleAndAvailable(UserSimpleDTO userDTO) {
         User user = userRepository.findByEmail(userDTO.getEmail());
         user.setAvailable(userDTO.getAvailable());
         user.setRole(userDTO.getRole());

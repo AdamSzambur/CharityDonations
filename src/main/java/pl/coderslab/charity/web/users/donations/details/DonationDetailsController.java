@@ -25,7 +25,6 @@ public class DonationDetailsController {
     public String userDonationsPage(@RequestParam Long donationId, Model model) {
         model.addAttribute("donation", donationService.getDonationById(donationId));
         model.addAttribute("formater", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        model.addAttribute("headerClass", "form");
         return "donation";
     }
 

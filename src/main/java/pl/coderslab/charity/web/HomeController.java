@@ -1,6 +1,5 @@
 package pl.coderslab.charity.web;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,11 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.dto.InstitutionDTO;
 import pl.coderslab.charity.dto.MessageDTO;
-import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.services.DonationService;
 import pl.coderslab.charity.services.EmailService;
 import pl.coderslab.charity.services.InstitutionService;
-import pl.coderslab.charity.services.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -29,31 +26,30 @@ public class HomeController {
     private DonationService donationService;
     private EmailService emailService;
 
+
     @ModelAttribute("sumOfQuantity")
-    public Integer sumOfQuantity(){
+    public Integer sumOfQuantity() {
         return donationService.getSumOfQuantity();
     }
 
     @ModelAttribute("sumDonatedInstitutions")
-    public Integer sumDonatedInstitutions(){
+    public Integer sumDonatedInstitutions() {
         return donationService.sumAllDonatedInstitiutions();
     }
 
     @ModelAttribute("institutions")
-    public List<InstitutionDTO> institutions(){
+    public List<InstitutionDTO> institutions() {
         return institutionService.getAllInstitutions();
     }
 
-
-    public HomeController(InstitutionService institutionService, DonationService donationService,
-                          EmailService emailService) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, EmailService emailService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.emailService = emailService;
     }
 
     @GetMapping
-    public String homeAction(Model model, Principal principal){
+    public String homeAction(Model model, Principal principal) {
         if (principal != null) {
             model.addAttribute("messageDTO", new MessageDTO(principal.getName()));
         } else {

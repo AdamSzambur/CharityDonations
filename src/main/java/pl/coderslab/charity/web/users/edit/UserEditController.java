@@ -25,7 +25,6 @@ public class UserEditController {
     @GetMapping
     public String editUserPage(Model model, Principal principal) {
         model.addAttribute("userFormDTO", userService.getUserByEmail(principal.getName()));
-        model.addAttribute("headerClass", "form");
         return "editUser";
     }
 

@@ -17,7 +17,6 @@ public class LoginController {
     public String loginPage(@RequestParam(required = false) String error, Model model, Principal principal) {
         if (principal==null) {
             model.addAttribute("loginUserDTO", new LoginFormDTO());
-            model.addAttribute("headerClass", "form");
             if (!(error == null)) {
                 model.addAttribute("errorMsg", "Podano błędne dane logowania");
             }

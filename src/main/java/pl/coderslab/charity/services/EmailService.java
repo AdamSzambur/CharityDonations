@@ -22,22 +22,22 @@ public class EmailService {
 
     public void sendMessage(MessageDTO messageDTO) {
 
-        String title = "CharityDoantions - wiadomosc pod uzytkownika";
-        String message = messageDTO.getFirstName()
+        String title = "CharityDoantions - wiadomość pod użytkownika";
+        String message = "Wiadomość od <b>"
+                +messageDTO.getFirstName()
                 + " " + messageDTO.getLastName()
-                + " (" + messageDTO.getEmail() + ") . Wiadomość : "
+                + "</b> (" + messageDTO.getEmail() + ") <br>"
                 + messageDTO.getMessage();
-
-        sendHTMLMessage(messageDTO.getEmail(), message, title);
+        sendHTMLMessage("szambur.pl", message, title);
     }
 
     public void sendResetPassword(String email, String serverAddress) {
         User user = userRepository.findByEmail(email);
-        String htmlMsg = "Nacisnij <a href='"
+        String htmlMsg = "Naciśnij <a href='"
                 + serverAddress + "/users/reset_password_process?userEmail="
                 + email + "&userUUID="
                 + user.getUuid().toString()
-                + "'>link</a> zeby przejsc do strony resetowania hasla";
+                + "'>link</a> żeby przejść do strony resetowania hasła";
         String title = "CharityDonations - link do resetowania hasła";
 
         sendHTMLMessage(email, htmlMsg, title);
@@ -45,14 +45,13 @@ public class EmailService {
 
     public void sendActiveUser(String email, String serverAddress) {
         User user = userRepository.findByEmail(email);
-        String htmlMsg = "Nacisnij <a href='"
+        String htmlMsg = "Naciśnij <a href=\""
                 + serverAddress + "/users/register_process?userEmail="
                 + email + "&userUUID="
                 + user.getUuid().toString()
-                + "'>link</a> zeby aktywować konto";
+                + "\">link</a> żeby aktywować konto";
         String title = "CharityDonations - link do aktywacji konta";
-
-        sendHTMLMessage(email,title,htmlMsg);
+        sendHTMLMessage(email,htmlMsg,title);
     }
 
     public void sendHTMLMessage(String email, String message, String title) {
@@ -60,7 +59,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
         String htmlMsg = message;
         try {
-            mimeMessage.setContent(htmlMsg, "text/html");
+            mimeMessage.setContent(htmlMsg, "text/html;charset=utf-8");
             helper.setTo(email);
             helper.setSubject(title);
             helper.setFrom("szambur@o2.pl");
@@ -68,7 +67,5 @@ public class EmailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
     }
-
 }

@@ -24,7 +24,7 @@ public class CharityApplication {
 
     @PostConstruct
     public void init(){
-        // bez tego zapisując pole typu LocalDate do bazy otrzymamy datę pomniejszoną o jeden dzień :)
+        // do wykasowania ale
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 }

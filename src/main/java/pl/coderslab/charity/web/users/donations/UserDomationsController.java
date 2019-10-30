@@ -26,7 +26,6 @@ public class UserDomationsController {
     public String userDonationsPage(Model model, Principal principal) {
         model.addAttribute("donations", donationService.getAllDonationsByUser(userService.getUserByEmail(principal.getName()).getId()));
         model.addAttribute("formater", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        model.addAttribute("headerClass", "form");
         return "donationsUser";
     }
 }

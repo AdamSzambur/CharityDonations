@@ -22,4 +22,9 @@ public class GlobalController {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(principal.getName());
     }
+
+    @ModelAttribute("headerClass")
+    public String headerClass() {
+        return "form";
+    }
 }
