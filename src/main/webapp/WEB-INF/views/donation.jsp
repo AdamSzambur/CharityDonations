@@ -69,6 +69,14 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
+                Numer telefonu
+            </div>
+            <div class="col col-lg-3 p-3">
+                ${donation.phone}
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-3 p-3" style="text-align: right">
                 Dodatkowe informacje
             </div>
             <div class="col col-lg-3 p-3">

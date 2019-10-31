@@ -9,6 +9,7 @@ import pl.coderslab.charity.models.User;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -40,11 +41,18 @@ public class DonationDTO {
     @NotBlank
     private String phone;
 
+    private String status;
+
+    private LocalDateTime created;
+
+    private LocalDate pickUpDate;
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate plannedPickUpDate;
 
     @NotNull
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
 
     private String pickUpComment;

@@ -35,12 +35,16 @@
                     <li><a href="${mainURL}logout"><i class="fas fa-sign-out-alt"></i> <spring:message code="userMenu.button.signOut"/></a></li>
                 </ul>
             </li>
+            <li>&nbsp;&nbsp;<img onclick="location.href='${mainURL}?lang=pl'" alt="pl" src="${mainURL}resources/images/icon_pl.svg" height="24" width="24"></li>
+            <li><img onclick="location.href='${mainURL}?lang=en'" alt="en" src="${mainURL}resources/images/icon_uk.svg" height="24" width="24"></li>
         </ul>
         </c:if>
             <c:if test="${loggedUser==null}">
                 <ul class="nav--actions">
                     <li><a href="${mainURL}users/login" class="btn btn--small btn--without-border"><i class="fas fa-sign-in-alt"></i> <spring:message code="mainMenu.button.signIn"/></a></li>
                     <li><a href="${mainURL}users/register" class="btn btn--small btn--highlighted"><i class="fas fa-user-plus"></i> <spring:message code="mainMenu.button.signUp"/></a></li>
+                    <li>&nbsp;&nbsp;<img onclick="location.href='${pageContext.request.requestURL}?lang=pl'" alt="pl" src="${mainURL}resources/images/icon_pl.svg" height="24" width="24"></li>
+                    <li><img onclick="location.href='${pageContext.request.requestURL}?lang=en'" alt="en" src="${mainURL}resources/images/icon_uk.svg" height="24" width="24"></li>
                 </ul>
             </c:if>
         <ul>
