@@ -17,7 +17,7 @@ public class InstitutionDTO {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String name;
 
     private String description;

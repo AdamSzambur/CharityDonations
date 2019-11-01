@@ -12,17 +12,17 @@ public class UserSimpleDTO {
 
     private Long id;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "{validator.notBlank")
+    @Email(message = "{validator.email")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String role;
 
     private Boolean available;

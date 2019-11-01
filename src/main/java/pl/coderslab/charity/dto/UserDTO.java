@@ -1,6 +1,8 @@
 package pl.coderslab.charity.dto;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.coderslab.charity.Messages;
 import pl.coderslab.charity.models.User;
 
 import javax.validation.constraints.Email;
@@ -14,23 +16,23 @@ public class UserDTO {
 
     private Long id;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "{validator.notBlank}")
+    @Email(message = "{validator.email}")
     private String email;
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,12}$")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,12}$", message = "{validator.password}")
     private String password;
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,12}$")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,12}$", message = "{validator.password}")
     private String rePassword;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank}")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank}")
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank}")
     private String role;
 
     private Boolean available;
@@ -42,6 +44,8 @@ public class UserDTO {
     public UserDTO() {
         this.fullName = this.firstName + " " + this.lastName;
     }
+
+
 
     public UserDTO(String role, Boolean available) {
         setRole(role);

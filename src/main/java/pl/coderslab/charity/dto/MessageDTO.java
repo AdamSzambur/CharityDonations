@@ -10,10 +10,10 @@ import java.util.Objects;
 @Data
 public class MessageDTO {
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String lastName;
 
     private String message;

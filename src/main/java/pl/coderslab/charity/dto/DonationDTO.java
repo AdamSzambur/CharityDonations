@@ -20,25 +20,25 @@ public class DonationDTO {
 
     private User user;
 
-    @NotNull
+    @NotNull(message = "{validator.notNull")
     private List<Category> categories;
 
-    @NotNull
+    @NotNull(message = "{validator.notNull")
     private Integer quantity;
 
-    @NotNull
+    @NotNull(message = "{validator.notNull")
     private Institution institution;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String zipCode;
 
-    @NotBlank
+    @NotBlank(message = "{validator.notBlank")
     private String phone;
 
     private String status;
@@ -47,7 +47,7 @@ public class DonationDTO {
 
     private LocalDate pickUpDate;
 
-    @NotNull
+    @NotNull(message = "{validator.notNull")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate plannedPickUpDate;
 

@@ -1,9 +1,12 @@
 package pl.coderslab.charity;
 
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -48,4 +51,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         localeResolver.setDefaultLocale(mvcProperties.getLocale());
         return localeResolver;
     }
+
+    @Bean
+    public LocalValidatorFactoryBean getMessage(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+
 }
