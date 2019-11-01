@@ -8,18 +8,18 @@
 <jsp:include page="header.jsp"/>
 
 <section class="login-page">
-    <h2>Paczki przekazane przez użytkownika</h2>
+    <h2><spring:message code="donationsPage.headCaption"/></h2>
     <table class="table" style="font-size: 12px">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Data utworzenia</th>
-            <th scope="col">Nazwa instytucji</th>
-            <th scope="col">Ilość</th>
-            <th scope="col">Planowana<br>data odbioru</th>
-            <th scope="col">Data odbioru</th>
-            <th scope="col">Status</th>
-            <th scope="col">Akcja</th>
+            <th scope="col"><spring:message code="donationsPage.dateCreated"/> </th>
+            <th scope="col"><spring:message code="donationsPage.institutionName"/></th>
+            <th scope="col"><spring:message code="donationsPage.quantity"/></th>
+            <th scope="col"><spring:message code="donationsPage.pickupDatePlanned"/></th>
+            <th scope="col"><spring:message code="donationsPage.pickupDate"/></th>
+            <th scope="col"><spring:message code="donationsPage.status"/></th>
+            <th scope="col"><spring:message code="donationsPage.action"/></th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
             <td>${donation.status}</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="${mainURL}users/donations/details?donationId=${donation.id}" class="btn btn--very-small btn--green">Szczegóły</a>
+                    <a href="${mainURL}users/donations/details?donationId=${donation.id}" class="btn btn--very-small btn--green"><spring:message code="donationsPage.button"/></a>
                 </div>
             </td>
             </tr>

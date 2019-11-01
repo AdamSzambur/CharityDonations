@@ -14,8 +14,8 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 @PropertySources({
-        @PropertySource("/application.properties"),
-        @PropertySource("/email.properties")
+        @PropertySource("classpath:application.properties"),
+        @PropertySource("classpath:email.properties")
 })
 public class CharityApplication {
     public static void main(String[] args) {

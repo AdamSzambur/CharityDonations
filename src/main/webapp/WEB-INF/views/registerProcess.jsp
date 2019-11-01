@@ -8,7 +8,7 @@
 
 <section class="login-page">
         <div class="container" style="font-size: 14px">
-            <h2>Dodawanie użytkownika - aktywacja konta</h2>
+            <h2><spring:message code="registerPageProcess.headCaption"/></h2>
             <br>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-12 p-3 text-center">

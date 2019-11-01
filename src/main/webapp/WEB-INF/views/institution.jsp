@@ -14,7 +14,7 @@
                 <br>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Nazwa
+                        <spring:message code="institutionEditPage.name"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:input path="name" cssClass="form-control" id="name"/><br>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Opis
+                        <spring:message code="institutionEditPage.description"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:input path="description" cssClass="form-control" id="description"/><br>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-12 p-3 text-center">
-                        <button type="submit" class="btn btn--small btn--yellow message-btn">Zapisz zmiany</button>
+                        <button type="submit" class="btn btn--small btn--yellow message-btn"><spring:message code="institutionEditPage.button.save"/></button>
                     </div>
                 </div>
             </div>

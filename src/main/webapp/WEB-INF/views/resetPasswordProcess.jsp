@@ -18,7 +18,7 @@
                 <form:hidden path="id"/>
 
             <div class="container" style="font-size: 14px">
-                <h2>Resetowanie hasła użytkownika</h2>
+                <h2><spring:message code="resetPasswordProcess.headCaption"/></h2>
                 <br>
 
 
@@ -40,7 +40,7 @@
 
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Hasło
+                        <spring:message code="resetPasswordProcess.password"/>
                     </div>
                     <div class="col col-lg-6 p-3">
                         <form:password path="password" cssClass="form-control col-lg-6" id="password"/>
@@ -51,7 +51,7 @@
 
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Powtórz hasło
+                        <spring:message code="resetPasswordProcess.rePassword"/>
                     </div>
                     <div class="col col-lg-6 p-3">
                         <form:password path="rePassword" cssClass="form-control col-lg-6" id="rePassword"/>
@@ -62,7 +62,7 @@
                 <div class="row justify-content-md-center">
                     <br>
                     <div class="col col-lg-7 p-3 text-center">
-                        <button type="submit" class="btn btn--small btn--yellow">Zresetuj hasło użytkownika</button>
+                        <button type="submit" class="btn btn--small btn--yellow"><spring:message code="resetPasswordProcess.button.reset"/></button>
                     </div>
                 </div>
             </div>
@@ -70,12 +70,12 @@
         </c:if>
         <c:if test="${userDTO==null}">
         <div class="container" style="font-size: 14px">
-            <h2>Resetowanie hasła użytkownika</h2>
+            <h2><spring:message code="resetPasswordProcess.headCaption"/></h2>
             <br>
             <div class="row justify-content-md-center">
                 <br>
                 <div class="col col-lg-7 p-3 text-center">
-                    <span class="error">Link nie jest już aktywny</span>
+                    <span class="error"><spring:message code="resetPasswordProcess.message"/></span>
                 </div>
             </div>
         </div>

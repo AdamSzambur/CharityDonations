@@ -9,8 +9,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
-                informacje o odbiorze
+                <spring:message code="formConfirmPage.text"/>
             </h1>
         </div>
     </div>

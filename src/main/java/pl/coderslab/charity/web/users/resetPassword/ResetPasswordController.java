@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.charity.Messages;
 import pl.coderslab.charity.dto.LoginFormDTO;
 import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.models.User;
@@ -21,15 +22,15 @@ import java.security.Principal;
 public class ResetPasswordController {
 
 
-    UserService userService;
-    EmailService emailService;
-    HttpServletRequest servletRequest;
+    private UserService userService;
+    private EmailService emailService;
+    private Messages messages;
 
 
-    public ResetPasswordController(UserService userService, EmailService emailService, HttpServletRequest servletRequest) {
+    public ResetPasswordController(UserService userService, EmailService emailService, Messages messages) {
         this.userService = userService;
         this.emailService = emailService;
-        this.servletRequest = servletRequest;
+        this.messages = messages;
     }
 
     @GetMapping
@@ -38,17 +39,17 @@ public class ResetPasswordController {
     }
 
     @PostMapping
-    public String resetPasswordProcess(@RequestParam String email, Model model) {
+    public String resetPasswordProcess(@RequestParam String email, Model model, HttpServletRequest servletRequest) {
         UserDTO user = userService.getUserByEmail(email);
 
-        String serverAddress = servletRequest.getRequestURL().substring(0,servletRequest.getRequestURL().length()-servletRequest.getRequestURI().length());
+        String serverAddress = servletRequest.getRequestURL().substring(0,servletRequest.getRequestURL().length()-servletRequest.getRequestURI().length())+servletRequest.getServletContext().getContextPath();
 
         if (user != null) {
             // sending email
             emailService.sendResetPassword(email, serverAddress);
-            model.addAttribute("message", "Wysłano maila z linkiem do resetowania hasła pod podany adres "+email);
+            model.addAttribute("message", messages.get("resetPassword.controllerMsg.email")+" "+email);
         } else {
-            model.addAttribute("error", "Nie ma w bazie użytkownika o podanym adresie");
+            model.addAttribute("error", messages.get("resetPassword.controllerMsg.noEmail"));
         }
 
         return "resetPassword";

@@ -9,19 +9,19 @@
 <section class="login-page">
 
 
-    <h2>Szczegóły paczki</h2>
+    <h2><spring:message code="donationPage.headCaption"/></h2>
     <br>
     <div class="container" style="font-size: 14px">
 
         <div class="row justify-content-md-center">
             <div class="col col-lg-6 p-3 border-bottom" style="text-align: right">
-                <b><h3>Oddałeś :</h3></b>
+                <b><h3><spring:message code="donationPage.youGave"/> :</h3></b>
             </div>
         </div>
         <br>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Liczba przekazanych paczek &nbsp;&nbsp;<i class="fas fa-luggage-cart"></i>
+                <spring:message code="donationPage.quantityBags"/> &nbsp;&nbsp;<i class="fas fa-luggage-cart"></i>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.quantity}
@@ -29,7 +29,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Instytucja &nbsp;&nbsp;<i class="fas fa-university"></i>
+                <spring:message code="donationPage.institution"/> &nbsp;&nbsp;<i class="fas fa-university"></i>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.institution.name}
@@ -37,7 +37,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Rodzaj darów &nbsp;&nbsp;<i class="fas fa-tshirt"></i>
+                <spring:message code="donationPage.kindOfDonation"/> &nbsp;&nbsp;<i class="fas fa-tshirt"></i>
             </div>
             <div class="col col-lg-3 p-3">
                 <c:forEach items="${donation.categories}" var="category">
@@ -48,12 +48,12 @@
         <br>
         <div class="row justify-content-md-center">
             <div class="col col-lg-6 p-3 border-bottom" style="text-align: right">
-                <b><h3>Adres, data i godzina planowanego odbioru :</h3></b>
+                <b><h3><spring:message code="donationPage.addressDateTime"/> :</h3></b>
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Adres
+                <spring:message code="donationPage.address"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.street}, ${donation.zipCode} ${donation.city}
@@ -61,7 +61,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Data i godzina
+                <spring:message code="donationPage.dateAndTime"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.plannedPickUpDate.format(formater)}, godz : ${donation.pickUpTime}
@@ -69,7 +69,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Numer telefonu
+                <spring:message code="donationPage.phoneNumber"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.phone}
@@ -77,7 +77,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Dodatkowe informacje
+                <spring:message code="donationPage.info"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.pickUpComment}
@@ -85,25 +85,25 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-6 p-3 border-bottom" style="text-align: right">
-                <b><h3>Status i data odbioru :</h3></b>
+                <b><h3><spring:message code="donationPage.statusAndDate"/> :</h3></b>
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Status
+                <spring:message code="donationsPage.status"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.status}
                     <c:if test="${donation.status.equals('nieodebrane')}">
                     <br><br>
-                    <a href="#" class="btn btn--very-small btn--yellow message-btn" data-id="${donation.id}">Zmień status na odebrane</a>
+                    <a href="#" class="btn btn--very-small btn--yellow message-btn" data-id="${donation.id}"><spring:message code="donationPage.button.Status"/></a>
                     </c:if>
             </div>
         </div>
         <c:if test="${donation.pickUpDate!=null}">
         <div class="row justify-content-md-center">
             <div class="col col-lg-3 p-3" style="text-align: right">
-                Data odbioru
+                <spring:message code="donationsPage.pickupDate"/>
             </div>
             <div class="col col-lg-3 p-3">
                 ${donation.pickUpDate}
@@ -120,11 +120,11 @@
             <span style="font-size: 14px">&times;</span>
         </button><br>
         <p style="text-align: center">
-            <span class="messageValue justify-content-center" style="font-size: 14px">Czy napewno chcesz zmienić<br>status daru na odebrany ?</span><br>
+            <span class="messageValue justify-content-center" style="font-size: 14px"><spring:message code="donationPage.message.text"/></span><br>
         <form method="post" class="justify-content-center">
             <input type="hidden" value="" id="elementId" name="elementId">
-            <button type="submit" role="button" class="btn btn--very-small btn--green">Zmień status</button>&nbsp;
-            <a role="button" class="btn btn--very-small btn--red" href="" onclick="event.preventDefault(); $('#messageBox').toggleClass('invisible');">Anuluj</a>
+            <button type="submit" role="button" class="btn btn--very-small btn--green"><spring:message code="donationPage.message.button.ok"/></button>&nbsp;
+            <a role="button" class="btn btn--very-small btn--red" href="" onclick="event.preventDefault(); $('#messageBox').toggleClass('invisible');"><spring:message code="donationPage.message.button.cancel"/></a>
         </form>
         </p>
     </div>

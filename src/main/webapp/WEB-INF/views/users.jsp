@@ -8,17 +8,17 @@
 <jsp:include page="header.jsp"/>
 
 <section class="login-page">
-    <h2>List wszystkich użytkowników</h2>
+    <h2><spring:message code="usersPage.headCaption"/></h2>
     <table class="table" style="font-size: 12px">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Imię</th>
-            <th scope="col">Nazwisko</th>
-            <th scope="col">Email</th>
-            <th scope="col">Dostęp</th>
-            <th scope="col">Aktywny</th>
-            <th scope="col">Akcja</th>
+            <th scope="col"><spring:message code="usersPage.name"/></th>
+            <th scope="col"><spring:message code="usersPage.surname"/></th>
+            <th scope="col"><spring:message code="usersPage.email"/></th>
+            <th scope="col"><spring:message code="usersPage.access"/></th>
+            <th scope="col"><spring:message code="usersPage.active"/></th>
+            <th scope="col"><spring:message code="usersPage.action"/></th>
         </tr>
         </thead>
         <tbody>
@@ -33,8 +33,8 @@
             <td>${user.available}</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="${mainURL}admin/users/edit?userId=${user.id}" class="btn btn--very-small btn--green">Edytuj</a>
-                    <a href="#" class="btn btn--very-small btn--red message-btn" data-id="${user.id}">Usuń</a>
+                    <a href="${mainURL}admin/users/edit?userId=${user.id}" class="btn btn--very-small btn--green"><spring:message code="usersPage.button.edit"/></a>
+                    <a href="#" class="btn btn--very-small btn--red message-btn" data-id="${user.id}"><spring:message code="usersPage.button.delete"/></a>
                 </div>
             </td>
             </tr>
@@ -57,11 +57,11 @@
             <span style="font-size: 14px">&times;</span>
         </button><br>
         <p style="text-align: center">
-            <span class="messageValue justify-content-center" style="font-size: 14px">Czy napewno chcesz usunąć użytkownika ?<br>Usuwając użytkownika, usuwasz również<br>dary do niego przypisane.</span><br>
+            <span class="messageValue justify-content-center" style="font-size: 14px"><spring:message code="usersPage.message.text"/></span><br>
         <form method="post" class="justify-content-center">
             <input type="hidden" value="" id="elementId" name="elementId">
-            <button type="submit" role="button" class="btn btn--very-small btn--green">Usuń uzytkownika</button>&nbsp;
-            <a role="button" class="btn btn--very-small btn--red" href="" onclick="event.preventDefault(); $('#messageBox').toggleClass('invisible');">Anuluj</a>
+            <button type="submit" role="button" class="btn btn--very-small btn--green"><spring:message code="usersPage.message.button.delete"/></button>&nbsp;
+            <a role="button" class="btn btn--very-small btn--red" href="" onclick="event.preventDefault(); $('#messageBox').toggleClass('invisible');"><spring:message code="usersPage.message.button.cancel"/></a>
         </form>
         </p>
     </div>

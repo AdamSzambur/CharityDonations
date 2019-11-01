@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.Messages;
 import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.services.UserService;
 import javax.validation.Valid;
@@ -17,9 +18,11 @@ import java.security.Principal;
 public class UserEditController {
 
     private UserService userService;
+    private Messages messages;
 
-    public UserEditController(UserService userService) {
+    public UserEditController(UserService userService, Messages messages) {
         this.userService = userService;
+        this.messages = messages;
     }
 
     @GetMapping
@@ -36,7 +39,7 @@ public class UserEditController {
         }
 
         if (!userFormDTO.getPassword().equals(userFormDTO.getRePassword())) {
-            result.rejectValue("rePassword", null, "Hasła muszą być takie same");
+            result.rejectValue("rePassword", null, messages.get("registerPage.controllerMsg.wrongPassword"));
             return "editUser";
         }
 

@@ -12,7 +12,7 @@
         <form:hidden path="role"/>
         <form:hidden path="id"/>
         <div class="container" style="font-size: 14px">
-            <h2>Edycja danych użytkownika</h2>
+            <h2><spring:message code="profilePage.headCaption"/></h2>
             <br>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
@@ -31,7 +31,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Imię
+                    <spring:message code="profilePage.name"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:input path="firstName" cssClass="form-control" id="firstName"/>
@@ -40,7 +40,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Nazwisko
+                    <spring:message code="profilePage.surname"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:input path="lastName" cssClass="form-control" id="lastName"/>
@@ -49,7 +49,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Hasło
+                    <spring:message code="profilePage.password"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:password path="password" cssClass="form-control col-lg-6" id="password"/>
@@ -58,7 +58,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Powtórz hasło
+                    <spring:message code="profilePage.rePassword"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:password path="rePassword" cssClass="form-control col-lg-6" id="rePassword"/>
@@ -67,7 +67,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-7 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow">Zaktualizuj dane użytkownika</button>
+                    <button type="submit" class="btn btn--small btn--yellow"><spring:message code="profilePage.button"/></button>
                 </div>
             </div>
         </div>

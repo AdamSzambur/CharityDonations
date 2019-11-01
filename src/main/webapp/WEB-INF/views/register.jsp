@@ -12,7 +12,7 @@
         <form:hidden path="role"/>
 
         <div class="container" style="font-size: 14px">
-            <h2>Dodawanie użytkownika</h2>
+            <h2><spring:message code="registerPage.headCaption"/></h2>
             <br>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
@@ -25,13 +25,13 @@
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
                         <form:input path="email" cssClass="form-control" id="email"/>
-                        <form:errors path="email" cssClass="error_small" element="div" />
                     </div>
+                    <form:errors path="email" cssClass="error_small" element="div" />
                 </div>
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Imię
+                    <spring:message code="registerPage.name"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:input path="firstName" cssClass="form-control" id="firstName"/>
@@ -40,7 +40,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Nazwisko
+                    <spring:message code="registerPage.surname"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:input path="lastName" cssClass="form-control" id="lastName"/>
@@ -49,7 +49,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Hasło
+                    <spring:message code="registerPage.password"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:password path="password" cssClass="form-control col-lg-6" id="password"/>
@@ -58,7 +58,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Powtórz hasło
+                    <spring:message code="registerPage.repassword"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <form:password path="rePassword" cssClass="form-control col-lg-6" id="rePassword"/>
@@ -67,7 +67,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-7 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow">Dodaj użytkownika</button>
+                    <button type="submit" class="btn btn--small btn--yellow"><spring:message code="registerPage.button.add"/></button>
                 </div>
             </div>
         </div>

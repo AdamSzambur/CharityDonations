@@ -9,13 +9,13 @@
 <section class="login-page">
     <form method="post">
         <div class="container" style="font-size: 14px">
-            <h2>Resetowanie hasła</h2>
+            <h2><spring:message code="resetPassword.headCaption"/></h2>
             <br>
 
             <c:if test="${message==null}">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-6 p-3" style="text-align: right">
-                    Podaj email na który mamy wysłać link do resetowania hasła
+                    <spring:message code="resetPassword.text"/>
                 </div>
 
                 <div class="col col-lg-6 p-3">
@@ -30,7 +30,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-12 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow">Wyślij</button>
+                    <button type="submit" class="btn btn--small btn--yellow"><spring:message code="resetPassword.button.send"/></button>
                 </div>
             </div>
             </c:if>

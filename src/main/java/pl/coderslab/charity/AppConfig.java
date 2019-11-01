@@ -4,8 +4,6 @@ import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -19,12 +17,6 @@ import java.util.Locale;
 
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
-
-    @Bean
-    public JavaMailSender javaMailSender() {
-        return new JavaMailSenderImpl();
-    }
-
 
     @Bean(name = "localeResolver")
     public LocaleContextResolver getLocaleContextResolver() {

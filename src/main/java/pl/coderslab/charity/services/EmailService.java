@@ -22,13 +22,13 @@ public class EmailService {
 
     public void sendMessage(MessageDTO messageDTO) {
 
-        String title = "CharityDoantions - wiadomość pod użytkownika";
+        String title = "CharityDoantions - wiadomość od użytkownika";
         String message = "Wiadomość od <b>"
                 +messageDTO.getFirstName()
                 + " " + messageDTO.getLastName()
                 + "</b> (" + messageDTO.getEmail() + ") <br>"
                 + messageDTO.getMessage();
-        sendHTMLMessage("szambur.pl", message, title);
+        sendHTMLMessage("szambur@o2.pl", message, title);
     }
 
     public void sendResetPassword(String email, String serverAddress) {

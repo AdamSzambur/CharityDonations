@@ -10,11 +10,11 @@
         <form:form method="post" modelAttribute="userDTO">
             <form:hidden path="id"/>
             <div class="container" style="font-size: 14px">
-                <h2>Edycja danych użytkownika</h2>
+                <h2><spring:message code="userEditPage.headCaption"/></h2>
                 <br>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Email
+                        <spring:message code="userEditPage.email"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:input path="email" cssClass="form-control col-lg-8" id="name" readonly="true"/><br>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Imię
+                        <spring:message code="userEditPage.name"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:input path="firstName" cssClass="form-control col-lg-8" id="description" readonly="true"/><br>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Nazwisko
+                        <spring:message code="userEditPage.surname"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:input path="lastName" cssClass="form-control col-lg-8" id="description" readonly="true"/><br>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3 p-3" style="text-align: right">
-                        Dostęp uzytkownika
+                        <spring:message code="userEditPage.role"/>
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:select path="role" cssClass="form-control col-lg-3">
@@ -51,13 +51,13 @@
                     </div>
                     <div class="col col-lg-9 p-3">
                         <form:checkbox cssClass="form-check-input" path="available" id="available"/>
-                        <label class="form-check-label" for="available">Użytkownik aktywny</label>
+                        <label class="form-check-label" for="available"><spring:message code="userEditPage.checkboxActive"/></label>
                     </div>
                 </div>
 
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-12 p-3 text-center">
-                        <button type="submit" class="btn btn--small btn--yellow message-btn">Zapisz zmiany</button>
+                        <button type="submit" class="btn btn--small btn--yellow message-btn"><spring:message code="userEditPage.button.save"/></button>
                     </div>
                 </div>
             </div>

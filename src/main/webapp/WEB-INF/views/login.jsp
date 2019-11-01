@@ -10,7 +10,7 @@
 <section class="login-page">
     <form:form method="post" modelAttribute="loginUserDTO">
         <div class="container" style="font-size: 14px">
-            <h2>Logowanie użytkownika</h2>
+            <h2><spring:message code="loginPage.headCaption"/></h2>
             <br>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
@@ -28,18 +28,18 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3 p-3" style="text-align: right">
-                    Hasło
+                    <spring:message code="loginPage.password"/>
                 </div>
                 <div class="col col-lg-6 p-3">
                     <div class="input-group">
                     <form:password path="password" cssClass="form-control col-lg-7" id="password"/>&nbsp;
-                    <a href="${mainURL}users/reset_password" class="btn btn--very-small btn--blue">Przypomnij hasło</a>
+                    <a href="${mainURL}users/reset_password" class="btn btn--very-small btn--blue"><spring:message code="loginPage.button.resetPassword"/></a>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-lg-7 p-3 text-center">
-                    <button type="submit" class="btn btn--small btn--yellow">Zaloguj</button>
+                    <button type="submit" class="btn btn--small btn--yellow"><spring:message code="loginPage.button.login"/></button>
                 </div>
             </div>
         </div>

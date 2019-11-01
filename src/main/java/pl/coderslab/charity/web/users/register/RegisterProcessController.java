@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.Messages;
 import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.services.UserService;
 
@@ -15,9 +16,11 @@ import javax.validation.Valid;
 public class RegisterProcessController {
 
     private UserService userService;
+    private Messages messages;
 
-    public RegisterProcessController(UserService userService) {
+    public RegisterProcessController(UserService userService, Messages messages) {
         this.userService = userService;
+        this.messages = messages;
     }
 
     @GetMapping
@@ -26,10 +29,10 @@ public class RegisterProcessController {
         if (userEmail!=null) {
             if (userService.checkEmailUUID(userEmail,userUUID)) {
                 userService.updateAvailable(userEmail,true);
-                model.addAttribute("message","Konto zostało aktywowane");
+                model.addAttribute("message",messages.get("registerPageProcess.controllerMsg.activeAccount"));
             }
         } else {
-            model.addAttribute("message", "Wysłano na podany email link do aktywacji konta");
+            model.addAttribute("message", messages.get("registerPageProcess.controllerMsg.email"));
         }
         return "registerProcess";
     }

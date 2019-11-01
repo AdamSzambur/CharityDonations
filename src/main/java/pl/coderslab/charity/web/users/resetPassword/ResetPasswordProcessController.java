@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.Messages;
 import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.services.EmailService;
 import pl.coderslab.charity.services.UserService;
@@ -16,15 +17,13 @@ import javax.validation.Valid;
 public class ResetPasswordProcessController {
 
 
-    UserService userService;
-    EmailService emailService;
-    HttpServletRequest servletRequest;
+    private UserService userService;
+    private Messages messages;
 
 
-    public ResetPasswordProcessController(UserService userService, EmailService emailService, HttpServletRequest servletRequest) {
+    public ResetPasswordProcessController(UserService userService, Messages messages) {
         this.userService = userService;
-        this.emailService = emailService;
-        this.servletRequest = servletRequest;
+        this.messages = messages;
     }
 
     @GetMapping
@@ -45,7 +44,7 @@ public class ResetPasswordProcessController {
         }
 
         if (!userDTO.getPassword().equals(userDTO.getRePassword())) {
-            result.rejectValue("rePassword", null, "Hasła muszą być zgodne");
+            result.rejectValue("rePassword", null, messages.get("registerPage.controllerMsg.wrongPassword"));
             return "resetPasswordProcess";
         }
 
