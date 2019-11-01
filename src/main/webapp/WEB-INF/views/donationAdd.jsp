@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:url value="/" var="mainURL"/>
+<c:url var="mainURL" value="/"/>
 <jsp:include page="header.jsp"/>
 
 <div class="slogan container container--90">

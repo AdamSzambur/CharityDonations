@@ -3,8 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<c:url value="/" var="mainURL"/>
+<c:url var="mainURL" value="/"/>
 <jsp:include page="header.jsp"/>
 
 <section class="login-page">
@@ -66,6 +65,6 @@
         </p>
     </div>
 </message>
-<script src="<c:url value="${mainURL}resources/js/message.js"/>"></script>
+<script src="${mainURL}resources/js/message.js"></script>
 <jsp:include page="footer.jsp"/>
 
