@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url var="mainURL" value="/"/>
 <jsp:include page="header.jsp"/>
-
+${errors}
 <div class="slogan container container--90">
     <div class="slogan--item">
         <h1>

@@ -11,7 +11,7 @@ import pl.coderslab.charity.services.CategoryService;
 import pl.coderslab.charity.services.UserService;
 
 @Component
-public class UserConverter implements Converter<String, UserDTO> {
+public class UserDTOConverter implements Converter<String, UserDTO> {
     @Autowired
     private UserService userService;
 

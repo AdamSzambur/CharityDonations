@@ -52,12 +52,23 @@ public class DonationController {
     }
 
     @PostMapping
-    public String proccessDonationMainPage(@ModelAttribute("donation") @Valid DonationDTO donation, BindingResult result, Model model) {
+    public String processDonationMainPage(@ModelAttribute("donation") @Valid DonationDTO donation, BindingResult result, Model model) {
         if (result.hasErrors()) {
+//            model.addAttribute("errors", getAllErrors(result));
             return "donationAdd";
         }
         donationService.addDonation(donation);
-        return "redirect:";
+        return "redirect:/";
     }
+
+//
+//    public String getAllErrors(BindingResult result) {
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (ObjectError object : result.getAllErrors()) {
+//            sb.append(object.getObjectName()).append(object.getDefaultMessage()).append(" ").append("<br><br>");
+//        }
+//        return sb.toString();
+//    }
 
 }

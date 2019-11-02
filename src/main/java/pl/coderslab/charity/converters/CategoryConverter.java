@@ -1,5 +1,6 @@
 package pl.coderslab.charity.converters;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -10,12 +11,14 @@ import pl.coderslab.charity.services.CategoryService;
 import pl.coderslab.charity.services.InstitutionService;
 
 @Component
-public class CategoryDTOConverter implements Converter<String, CategoryDTO> {
+public class CategoryConverter implements Converter<String, Category> {
     @Autowired
     private CategoryService categoryService;
 
+    private ModelMapper mapper = new ModelMapper();
+
     @Override
-    public CategoryDTO convert(String s) {
-        return categoryService.getCategoryById(Long.parseLong(s));
+    public Category convert(String s) {
+        return mapper.map(categoryService.getCategoryById(Long.parseLong(s)), Category.class);
     }
 }

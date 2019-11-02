@@ -45,6 +45,7 @@ public class DonationDTO {
 
     private LocalDateTime created;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
     @NotNull(message = "{validator.notNull")
